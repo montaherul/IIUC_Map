@@ -1,0 +1,36 @@
+﻿{
+  "name": "iiuc-live-campus-map",
+  "version": "0.1.0",
+  "private": true,
+  "description": "IIUC Live Campus Map - CSE-3634",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "migrate": "node scripts/migrate.js",
+    "seed:campus": "node scripts/seed-iiuc-campus.js",
+    "lint": "node --check src/server.js && node --check src/config/env.js && node --check src/config/mapTiles.js && node --check src/sockets/index.js && node --check src/modules/locations/service.js && node --check src/modules/auth/service.js && node --check src/modules/admin/service.js && node --check tests/run.js",
+    "test": "node tests/run.js",
+    "check": "node --check src/server.js && node tests/run.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "better-sqlite3": "^11.10.0",
+    "connect-sqlite3": "^0.9.18",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.3",
+    "express-rate-limit": "^7.5.1",
+    "express-session": "^1.19.0",
+    "helmet": "^7.2.0",
+    "morgan": "^1.12.1",
+    "socket.io": "^4.8.4",
+    "sqlite3": "^5.1.7",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Markers - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Markers</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <a href="/admin/campus">Campus</a>
+          <a href="/admin/markers" aria-current="page">Markers</a>
+          <a href="/admin/categories">Categories</a>
+          <a href="/admin/locations">Locations</a>
+          <a href="/admin/logs">Logs</a>
+          <a href="/admin/settings">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div class="card">
+          <h3 style="margin-top:0">Find markers</h3>
+          <form id="filterForm" class="row">
+            <label>Search<input id="fQ" placeholder="title / description" /></label>
+            <label>Category<select id="fCat"><option value="">All categories</option></select></label>
+            <label class="row"><input type="checkbox" id="fInactive" /> Include inactive</label>
+            <label>Limit<select id="fLimit"><option value="25">25</option><option value="50" selected>50</option><option value="100">100</option></select></label>
+            <button class="primary" type="submit">Filter</button>
+            <button type="button" id="fClear">Clear</button>
+          </form>
+          <div class="row" style="margin-top:8px;gap:8px">
+            <button id="fPrev" disabled>Prev</button>
+            <button id="fNext" disabled>Next</button>
+            <span id="fMeta" class="muted"></span>
+          </div>
+          <table id="markersTable">
+            <thead><tr><th>Title</th><th>Category</th><th>Owner</th><th>Coordinates</th><th>Created</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Edit marker</h3>
+          <form id="editForm" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>Title<input name="title" required /></label>
+            <label>Description<textarea name="description"></textarea></label>
+            <label>Category<select name="categoryId"><option value="">None</option></select></label>
+            <label>Latitude<input name="latitude" type="number" step="any" required /></label>
+            <label>Longitude<input name="longitude" type="number" step="any" required /></label>
+            <div style="align-self:end;display:flex;gap:8px"><button class="primary" type="submit">Save changes</button><button type="button" id="editReset">Cancel</button></div>
+          </form>
+        </div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    let offset = 0, limit = 50, filters = {};
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        await loadCategories();
+        await loadMarkers();
+      } catch(e){ location.href='/login?next=/admin/markers'; }
+    }
+    async function loadCategories(){
+      const d = await api('/api/v1/categories?includeInactive=1');
+      const cats = (d.data.items||[]).filter(c=>c.kind==='marker');
+      const opts = ['<option value="">None</option>'] + cats.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+      $('#editForm [name="categoryId"]').innerHTML = opts;
+      $('#fCat').innerHTML = '<option value="">All categories</option>' + cats.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+    }
+    async function loadMarkers(){
+      const params = new URLSearchParams();
+      if ($('#fQ').value) params.set('q', $('#fQ').value);
+      if ($('#fCat').value) params.set('categoryId', $('#fCat').value);
+      if ($('#fInactive').checked) params.set('active', '0');
+      params.set('limit', String(limit));
+      params.set('offset', String(offset));
+      const d = await api('/api/v1/admin/markers?' + params.toString());
+      const body = d.data.markers || d.data;
+      limit = Number($('#fLimit').value);
+      offset = body.offset || 0;
+      const tbody = $('#markersTable tbody');
+      tbody.innerHTML = (body.items||[]).map(m=>{
+        const active = !!m.is_active;
+        return `<tr data-id="${m.id}">
+          <td><b>${esc(m.title)}</b></td>
+          <td>${esc(m.category_name||'uncategorized')}</td>
+          <td>${esc(m.owner_name||'-')}</td>
+          <td class="coords">${m.latitude}, ${m.longitude}</td>
+          <td class="muted" style="font-size:12px">${esc(m.created_at)}</td>
+          <td><span class="badge ${active?'ok':'err'}">${active?'Active':'Inactive'}</span></td>
+          <td class="actions">
+            <button class="secondary editBtn">Edit</button>
+            <button class="danger ${active?'':'secondary'} toggleBtn">${active?'Deactivate':'Activate'}</button>
+          </td>
+        </tr>`;
+      }).join('') || '<tr><td colspan="7" class="empty">No markers found.</td></tr>';
+      $('#fMeta').textContent = `Showing ${body.offset + 1}&ndash;${body.offset + (body.items||[]).length} of ${body.total}`;
+      $('#fPrev').disabled = offset <= 0;
+      $('#fNext').disabled = offset + (body.items||[]).length >= body.total;
+      document.querySelectorAll('.editBtn').forEach(btn=>{
+        btn.onclick = async ()=>{
+          const tr = btn.closest('tr'); const id = tr.dataset.id;
+          try{
+            const d = await api(`/api/v1/admin/markers/${id}`);
+            const m = d.data.item;
+            const f = $('#editForm');
+            f.id.value = m.id; f.title.value = m.title; f.description.value = m.description || '';
+            f.categoryId.value = m.category_id || '';
+            f.latitude.value = m.latitude; f.longitude.value = m.longitude;
+            window.scrollTo({top:0,behavior:'smooth'});
+          } catch(e){ show(e.message,'status error'); }
+        };
+      });
+      document.querySelectorAll('.toggleBtn').forEach(btn=>{
+        btn.onclick = async ()=>{
+          const tr = btn.closest('tr'); const id = tr.dataset.id;
+          const toActive = btn.textContent.startsWith('Activate');
+          try{
+            if (toActive){
+              await api(`/api/v1/admin/markers/${id}`,{method:'PATCH',body:JSON.stringify({isActive:true})});
+            } else {
+              await api(`/api/v1/admin/markers/${id}`,{method:'DELETE'});
+            }
+            await loadMarkers(); show(`Marker ${toActive?'activated':'deactivated'}.`,'status ok');
+          } catch(e){ show(e.message,'status error'); }
+        };
+      });
+    }
+    $('#editForm').onsubmit = async (e)=>{
+      e.preventDefault();
+      try{
+        const fd = new FormData(e.target);
+        const body = {
+          title: fd.get('title'),
+          description: fd.get('description') || null,
+          categoryId: fd.get('categoryId') || null,
+          latitude: fd.get('latitude'),
+          longitude: fd.get('longitude'),
+        };
+        const id = fd.get('id');
+        await api(`/api/v1/admin/markers/${id}`,{method:'PATCH',body:JSON.stringify(body)});
+        $('#editReset').click(); await loadMarkers(); show('Marker updated.','status ok');
+      } catch(err){ show(err.message,'status error'); }
+    };
+    $('#editReset').onclick = ()=>$('#editForm').reset();
+    $('#filterForm').onsubmit = async (e)=>{ e.preventDefault(); offset = 0; filters = {q:$('#fQ').value, category:$('#fCat').value}; limit = Number($('#fLimit').value); await loadMarkers(); };
+    $('#fClear').onclick = async ()=>{ $('#fQ').value=''; $('#fCat').value=''; $('#fInactive').checked=false; filters={}; offset=0; await loadMarkers(); };
+    $('#fPrev').onclick = async ()=>{ offset = Math.max(0, offset - limit); await loadMarkers(); };
+    $('#fNext').onclick = async ()=>{ offset += limit; await loadMarkers(); };
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

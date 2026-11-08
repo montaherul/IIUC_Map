@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand"><h1 id="app-name">IIUC Live Campus Map</h1></div>
+      <nav id="app-nav" class="app-nav" aria-label="Primary"></nav>
+      <div class="header-meta">
+        <span id="badge-online" class="badge">Online</span>
+        <span id="badge-session" class="badge">Session</span>
+      </div>
+    </header>
+    <div class="statusbar"><span id="badge-socket" class="badge">Socket: idle</span><span class="muted">Use your assigned account. Errors are intentionally generic.</span></div>
+    <main id="main" class="app-main" tabindex="-1">
+      <div class="grid-2">
+        <section class="card" aria-labelledby="login-title">
+          <h2 id="login-title">Login</h2>
+          <p class="muted">Sign in to access role-aware campus features.</p>
+          <div id="loginNotice"></div>
+          <form id="loginForm" class="stack" novalidate>
+            <label>Email<input name="email" type="email" autocomplete="username" required /></label>
+            <label>Password<input name="password" type="password" autocomplete="current-password" required /></label>
+            <button class="primary" type="submit">Login</button>
+          </form>
+        </section>
+        <section class="card" aria-labelledby="help-title">
+          <h3 id="help-title">Account access</h3>
+          <p class="muted">If registration is enabled by administrators, you can request a student or teacher account.</p>
+          <p id="registerHelp"><a href="/register">Request an account</a></p>
+          <div id="sessionInfo" class="notice info">Checking session…</div>
+        </section>
+      </div>
+    </main>
+    <footer class="app-footer"><span>&copy; <span data-app-name>IIUC Live Campus Map</span></span><span>Protected by session and CSRF controls.</span></footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    (async () => {
+      const shell = await IIUC.renderShell({ publicOnly: true });
+      if (shell?.redirected) return;
+      if (shell?.config?.registrationEnabled === false) $('#registerHelp').innerHTML = '<span class="muted">Self-registration is currently disabled.</span>';
+      const params = new URLSearchParams(location.search);
+      if (params.get('reason') === 'session') IIUC.setNotice($('#loginNotice'), 'warn', 'Your session expired. Please sign in again.');
+      if (params.get('registration') === 'disabled') IIUC.setNotice($('#loginNotice'), 'warn', 'Registration is currently disabled.');
+      try {
+        const me = await IIUC.api('/api/v1/auth/me');
+        $('#sessionInfo').innerHTML = `Signed in as <strong>${IIUC.esc(me.data.user.display_name)}</strong> (${IIUC.esc(me.data.user.role)}). <a href="${IIUC.esc(IIUC.roleHome(me.data.user))}">Continue</a>`;
+      } catch (_) {
+        $('#sessionInfo').innerHTML = 'No active session.';
+      }
+      $('#loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        IIUC.setLoading($('#loginNotice'), 'Signing in…');
+        try {
+          const data = await IIUC.api('/api/v1/auth/login', { method: 'POST', body: JSON.stringify(IIUC.formObject(e.target)) });
+          IIUC.setNotice($('#loginNotice'), 'success', 'Signed in. Redirecting…');
+          const next = params.get('next');
+          location.href = next && next.startsWith('/') ? next : IIUC.roleHome(data.data.user);
+        } catch (err) {
+          IIUC.setNotice($('#loginNotice'), 'error', err.message || 'Unable to sign in.');
+        } finally { btn.disabled = false; }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Settings - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Settings</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <a href="/admin/campus">Campus</a>
+          <a href="/admin/markers">Markers</a>
+          <a href="/admin/categories">Categories</a>
+          <a href="/admin/locations">Locations</a>
+          <a href="/admin/logs">Logs</a>
+          <a href="/admin/settings" aria-current="page">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div id="settingsList"></div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        await loadSettings();
+      } catch(e){ location.href='/login?next=/admin/settings'; }
+    }
+    async function loadSettings(){
+      const d = await api('/api/v1/admin/settings');
+      const settings = d.data.settings || d.data;
+      const keys = Object.keys(settings).sort();
+      $('#settingsList').innerHTML = keys.map(key=>{
+        const value = settings[key];
+        const isBool = typeof value === 'boolean';
+        const isObj = typeof value === 'object' && value !== null;
+        let input;
+        if (isBool){
+          input = `<label class="row"><input type="checkbox" name="${esc(key)}" ${value?'checked':''} /> <span>${esc(key)}</span></label>`;
+        } else if (isObj){
+          input = `<textarea name="${esc(key)}">${esc(JSON.stringify(value,null,2))}</textarea>`;
+        } else {
+          input = `<input name="${esc(key)}" type="text" value="${esc(String(value))}" />`;
+        }
+        return `<div class="settings-kv">
+          <div class="key">${esc(key)}</div>
+          <form class="row" style="flex-wrap:wrap;align-items:center;margin-top:6px">${input}<button class="primary saveBtn" data-key="${esc(key)}">Save</button><span class="saved muted" data-key="${esc(key)}"></span></form>
+        </div>`;
+      }).join('') || '<span class="muted">No settings.</span>';
+      document.querySelectorAll('.saveBtn').forEach(btn=>{
+        btn.onclick = async ()=>{
+          const key = btn.dataset.key;
+          const form = btn.closest('form');
+          const el = form.querySelector('input[type="checkbox"], textarea, input[type="text"]');
+          let value;
+          if (el && el.type === 'checkbox') value = el.checked;
+          else if (el && el.tagName === 'TEXTAREA') value = JSON.parse(el.value || 'null');
+          else value = el ? el.value : '';
+          try{
+            await api(`/api/v1/admin/settings/${key}`,{method:'PUT',body:JSON.stringify({value})});
+            const span = form.querySelector('.saved');
+            span.textContent = 'Saved.';
+            span.className = 'saved ok';
+            setTimeout(()=>{ span.textContent=''; span.className='saved muted'; }, 1500);
+          } catch(err){ show(err.message,'status error'); }
+        };
+      });
+    }
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

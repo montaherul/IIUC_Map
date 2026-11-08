@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Locations - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Locations</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <a href="/admin/campus">Campus</a>
+          <a href="/admin/markers">Markers</a>
+          <a href="/admin/categories">Categories</a>
+          <a href="/admin/locations" aria-current="page">Locations</a>
+          <a href="/admin/logs">Logs</a>
+          <a href="/admin/settings">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div class="card">
+          <h3 style="margin-top:0">Aggregate (default view &mdash; no coordinates)</h3>
+          <div class="stats" id="aggStats"></div>
+          <div class="grid" style="margin-top:12px">
+            <div class="card">
+              <h4>Sharing by audience</h4>
+              <div id="byAudience" class="list"></div>
+            </div>
+            <div class="card">
+              <h4>Live points by role</h4>
+              <div id="byRole" class="list"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Individual lookup (audited &mdash; returns last known coordinates)</h3>
+          <p class="muted">Requires a reason. Every lookup is written to the audit log as location.admin_lookup.</p>
+          <form id="lookupForm" class="form-grid">
+            <label>User ID<input name="userId" type="number" placeholder="e.g. 42" required /></label>
+            <label>Reason<textarea name="reason" placeholder="Why are you looking up this user's location?" required></textarea></label>
+            <div style="align-self:end"><button class="primary" type="submit">Lookup</button></div>
+          </form>
+          <div id="lookupResult" class="hidden"></div>
+        </div>
+        <div class="audit-note">Only sharing preferences and the most recent live point are returned. Full location history is not stored.</div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        await loadAggregate();
+      } catch(e){ location.href='/login?next=/admin/locations'; }
+    }
+    async function loadAggregate(){
+      const d = await api('/api/v1/admin/locations');
+      const s = d.data;
+      $('#aggStats').innerHTML = [
+        stat('Total users', s.totalUsers),
+        stat('Active users', s.activeUsers),
+        stat('Sharing users', s.sharingUsers),
+        stat('Not sharing', s.notSharingUsers),
+        stat('Live points', s.livePoints),
+        stat('Stale points', s.stalePoints, s.stalePoints > 0 ? 'badge warn' : ''),
+        stat('Expired points', s.expiredPoints, s.expiredPoints > 0 ? 'badge warn' : ''),
+      ].join('');
+      $('#byAudience').innerHTML = (s.byAudience||[]).map(a=>`<div class="row" style="justify-content:space-between"><span>${esc(a.audience||'none')}</span><span class="badge">${a.count}</span></div>`).join('') || '<span class="muted">None.</span>';
+      $('#byRole').innerHTML = (s.byRole||[]).map(a=>`<div class="row" style="justify-content:space-between"><span>${esc(a.role)}</span><span class="badge">${a.count}</span></div>`).join('') || '<span class="muted">None.</span>';
+    }
+    function stat(label, value, badgeCls){
+      return `<div class="stat"><span class="value">${esc(value)}</span><span class="label">${esc(label)}</span>${badgeCls?`<span class="badge ${badgeCls}">${esc(value)}</span>`:''}</div>`;
+    }
+    $('#lookupForm').onsubmit = async (e)=>{
+      e.preventDefault();
+      try{
+        const fd = new FormData(e.target);
+        const userId = fd.get('userId');
+        const reason = fd.get('reason');
+        const d = await api(`/api/v1/admin/locations/${userId}?reason=${encodeURIComponent(reason)}`);
+        const r = d.data.item || d.data;
+        const box = $('#lookupResult');
+        box.classList.remove('hidden');
+        const loc = r.location;
+        box.innerHTML = `
+          <div class="notice info"><b>Lookup audited.</b> User ${esc(r.user.display_name)} (${esc(r.user.role)}) &mdash; ${esc(r.user.email)} &middot; active: ${r.user.is_active}</div>
+          <div class="row" style="margin-top:8px"><span class="label">Last known:</span> ${loc?`<span class="coords">${loc.latitude}, ${loc.longitude}</span> <span class="muted">accuracy ${loc.accuracy==null?'-':loc.accuracy}m &middot; recorded ${esc(loc.recorded_at)}</span>`:'<span class="muted">No live location on record.</span>'}</div>
+          <div class="row"><span class="label">Sharing:</span> ${r.prefs&&r.prefs.is_sharing?'yes':'no'} ${r.prefs&&r.prefs.audience?`&middot; audience ${esc(r.prefs.audience)}`:''}${r.prefs&&r.prefs.expires_at?`&middot; expires ${esc(r.prefs.expires_at)}`:''}</div>
+          <div class="muted" style="font-size:12px;margin-top:6px">Lookup recorded at ${esc(r.lookedUpAt)} in audit log.</div>
+        `;
+      } catch(err){ show(err.message,'status error'); }
+    };
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

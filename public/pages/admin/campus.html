@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Campus - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Campus</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <a href="/admin/campus" aria-current="page">Campus</a>
+          <a href="/admin/markers">Markers</a>
+          <a href="/admin/categories">Categories</a>
+          <a href="/admin/locations">Locations</a>
+          <a href="/admin/logs">Logs</a>
+          <a href="/admin/settings">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div class="card">
+          <h3 style="margin-top:0">Add / edit campus location</h3>
+          <form id="campusForm" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>Name<input name="name" required /></label>
+            <label>Latitude<input name="latitude" type="number" step="any" required placeholder="22.4966" /></label>
+            <label>Longitude<input name="longitude" type="number" step="any" required placeholder="91.7214" /></label>
+            <label>Category<select name="categoryId"><option value="">None</option></select></label>
+            <label>Source<input name="source" placeholder="survey / map / import" /></label>
+            <label>Description<textarea name="description"></textarea></label>
+            <label class="row" style="align-self:flex-start"><input type="checkbox" name="isVerified" /> Verified</label>
+            <label class="row" style="align-self:flex-start"><input type="checkbox" name="isActive" checked /> Active</label>
+            <div style="align-self:end;display:flex;gap:8px"><button class="primary" type="submit" id="campusSave">Create</button><button type="button" id="campusReset">Reset</button></div>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Campus locations</h3>
+          <form id="filterForm" class="row">
+            <label>Search<input id="fQ" placeholder="name / source / description" /></label>
+            <label>Category<select id="fCat"><option value="">All categories</option></select></label>
+            <label class="row"><input type="checkbox" id="fVerified" /> Verified only</label>
+            <label class="row"><input type="checkbox" id="fInactive" /> Include inactive</label>
+            <button class="primary" type="submit">Filter</button>
+            <button type="button" id="fRefresh">Refresh</button>
+          </form>
+          <div id="campusList" class="list"></div>
+        </div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    let categories = [];
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        await loadCategories();
+        await loadCampus();
+      } catch(e){ location.href='/login?next=/admin/campus'; }
+    }
+    async function loadCategories(){
+      const d = await api('/api/v1/categories?includeInactive=1');
+      categories = (d.data.items||[]).filter(c=>c.kind==='campus');
+      const sel = $('#campusForm [name="categoryId"]');
+      const fsel = $('#fCat');
+      sel.innerHTML = '<option value="">None</option>' + categories.map(c=>`<option value="${c.id}">${esc(c.name)}${!c.is_active?' (inactive)':''}</option>`).join('');
+      fsel.innerHTML = '<option value="">All categories</option>' + categories.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+    }
+    function fillForm(item){
+      const f = $('#campusForm');
+      f.id.value = item?.id || '';
+      f.name.value = item?.name || '';
+      f.latitude.value = item?.latitude ?? '';
+      f.longitude.value = item?.longitude ?? '';
+      f.categoryId.value = item?.category_id || '';
+      f.source.value = item?.source || '';
+      f.description.value = item?.description || '';
+      f.isVerified.checked = !!item?.is_verified;
+      f.isActive.checked = !!item?.is_active;
+      $('#campusSave').textContent = item ? 'Update' : 'Create';
+    }
+    async function loadCampus(){
+      const params = new URLSearchParams();
+      if ($('#fQ').value) params.set('q', $('#fQ').value);
+      if ($('#fCat').value) params.set('categoryId', $('#fCat').value);
+      if ($('#fVerified').checked) params.set('verifiedOnly', '1');
+      if ($('#fInactive').checked) params.set('active', 'all');
+      const d = await api('/api/v1/campus?' + params.toString());
+      const list = $('#campusList');
+      list.innerHTML = (d.data.items||[]).map(i=>{
+        const active = !!i.is_active;
+        return `<div style="padding:8px 0;border-bottom:1px solid var(--line)">
+          <div class="row" style="justify-content:space-between;align-items:center"><div><b>${esc(i.name)}</b><span class="badge ${i.is_verified?'ok':''}">${i.is_verified?'verified':''}</span></div><div class="row"><button data-edit="${i.id}">Edit</button><button class="danger" data-del="${i.id}">${active?'Deactivate':'Activate'}</button></div></div>
+          <div class="muted">${esc(i.category_name||'uncategorized')} &middot; ${i.latitude}, ${i.longitude}${i.source?` &middot; ${esc(i.source)}`:''}${active?'':` &middot; inactive`}</div>
+          ${i.description?`<div>${esc(i.description)}</div>`:''}
+          <div class="muted" style="font-size:12px">by ${esc(i.created_by_name||'-')} &middot; ${esc(i.updated_at||i.created_at)}</div>
+        </div>`;
+      }).join('') || '<span class="muted">No campus locations.</span>';
+      document.querySelectorAll('[data-edit]').forEach(btn=>btn.onclick=()=>{
+        const item = (d.data.items||[]).find(x=>x.id==btn.dataset.edit); fillForm(item);
+      });
+      document.querySelectorAll('[data-del]').forEach(btn=>btn.onclick=async()=>{
+        const item = (d.data.items||[]).find(x=>x.id==btn.dataset.del);
+        if (!confirm(`${btn.textContent.startsWith('Deactivate')?'Deactivate':'Activate'} ${esc(item.name)}?`)) return;
+        try{
+          await api(`/api/v1/campus/${btn.dataset.del}`,{method:'PATCH',body:JSON.stringify({isActive:!item.is_active})});
+          await loadCampus(); show(item.is_active?'Location deactivated.':'Location activated.','status ok');
+        } catch(e){ show(e.message,'status error'); }
+      });
+    }
+    $('#campusForm').onsubmit = async (e)=>{
+      e.preventDefault();
+      try{
+        const fd = new FormData(e.target);
+        const body = {
+          name: fd.get('name'),
+          latitude: fd.get('latitude'),
+          longitude: fd.get('longitude'),
+          categoryId: fd.get('categoryId') || null,
+          source: fd.get('source') || null,
+          description: fd.get('description') || null,
+          isVerified: !!fd.get('isVerified'),
+          isActive: !!fd.get('isActive'),
+        };
+        const id = fd.get('id');
+        if (id) await api(`/api/v1/campus/${id}`,{method:'PATCH',body:JSON.stringify(body)});
+        else await api('/api/v1/campus',{method:'POST',body:JSON.stringify(body)});
+        fillForm(null); await loadCampus(); show(id?'Location updated.':'Location created.','status ok');
+      } catch(err){ show(err.message,'status error'); }
+    };
+    $('#campusReset').onclick = ()=>fillForm(null);
+    $('#filterForm').onsubmit = async (e)=>{ e.preventDefault(); await loadCampus(); };
+    $('#fRefresh').onclick = async ()=>{ await loadCampus(); };
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

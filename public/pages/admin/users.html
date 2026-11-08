@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Users - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Users</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users" aria-current="page">Users</a>
+          <a href="/admin/campus">Campus</a>
+          <a href="/admin/markers">Markers</a>
+          <a href="/admin/categories">Categories</a>
+          <a href="/admin/locations">Locations</a>
+          <a href="/admin/logs">Logs</a>
+          <a href="/admin/settings">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div class="card">
+          <h3 style="margin-top:0">Create user</h3>
+          <form id="createForm" class="form-grid" style="display:contents">
+            <label>Email<input name="email" type="email" required /></label>
+            <label>Display name<input name="displayName" required /></label>
+            <label>Password (min 8)<input name="password" type="password" required /></label>
+            <label>Role<select name="role"><option>student</option><option>teacher</option></select></label>
+            <div style="align-self:end"><button class="primary" type="submit">Create</button></div>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Find users</h3>
+          <form id="filterForm" class="row">
+            <label>Search<input id="fQ" placeholder="email or name" /></label>
+            <label>Role<select id="fRole"><option value="">All</option><option>admin</option><option>teacher</option><option>student</option></select></label>
+            <label>Status<select id="fActive"><option value="">All</option><option value="1">Active</option><option value="0">Inactive</option></select></label>
+            <label>Limit<select id="fLimit"><option value="25">25</option><option value="50" selected>50</option><option value="100">100</option></select></label>
+            <button class="primary" type="submit">Filter</button>
+            <button type="button" id="fClear">Clear</button>
+          </form>
+          <div class="row" style="margin-top:8px;gap:8px">
+            <button id="fPrev" disabled>Prev</button>
+            <button id="fNext" disabled>Next</button>
+            <span id="fMeta" class="muted"></span>
+          </div>
+          <table id="usersTable">
+            <thead><tr><th>Email</th><th>Display name</th><th>Role</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    let offset = 0;
+    let limit = 50;
+    let filters = {};
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        $('#fQ').value = filters.q || '';
+        $('#fRole').value = filters.role || '';
+        $('#fActive').value = filters.active || '';
+        $('#fLimit').value = String(limit);
+        await loadUsers();
+      } catch(e){ location.href='/login?next=/admin/users'; }
+    }
+    async function loadUsers(){
+      const q = { q: $('#fQ').value, role: $('#fRole').value, active: $('#fActive').value, limit: Number($('#fLimit').value), offset };
+      const d = await api('/api/v1/admin/users?' + new URLSearchParams(q).toString());
+      const body = d.data.users || d.data;
+      limit = Number($('#fLimit').value);
+      offset = body.offset || 0;
+      const tbody = $('#usersTable tbody');
+      tbody.innerHTML = (body.items||[]).map(u=>{
+        const active = !!u.is_active;
+        return `<tr>
+          <td><code>${esc(u.email)}</code></td>
+          <td>${esc(u.display_name)}</td>
+          <td>${esc(u.role)}</td>
+          <td><span class="badge ${active?'ok':'err'}">${active?'Active':'Inactive'}</span></td>
+          <td class="muted" style="font-size:12px">${esc(u.created_at)}</td>
+          <td class="actions" data-id="${u.id}">
+            <select class="roleSel"><option value="student" ${u.role==='student'?'selected':''}>student</option><option value="teacher" ${u.role==='teacher'?'selected':''}>teacher</option><option value="admin" ${u.role==='admin'?'selected':''}>admin</option></select>
+            <button class="secondary roleSave">Save role</button>
+            <button class="secondary toggleBtn">${active?'Deactivate':'Activate'}</button>
+            <button class="secondary resetBtn">Reset password</button>
+            <button class="danger delBtn">Delete</button>
+          </td>
+        </tr>`;
+      }).join('') || '<tr><td colspan="6" class="empty">No users found.</td></tr>';
+      $('#fMeta').textContent = `Showing ${body.offset + 1}&ndash;${body.offset + (body.items||[]).length} of ${body.total}`;
+      $('#fPrev').disabled = offset <= 0;
+      $('#fNext').disabled = offset + (body.items||[]).length >= body.total;
+      bindRowActions(body.items);
+    }
+    function bindRowActions(items){
+      items.forEach((u,i)=>{
+        const row = $('#usersTable tbody tr:nth-child(' + (i+1) + ') .actions');
+        const id = u.id;
+        row.querySelector('.roleSave').onclick = async ()=>{
+          try{
+            const role = row.querySelector('.roleSel').value;
+            await api(`/api/v1/admin/users/${id}`,{method:'PATCH',body:JSON.stringify({role})});
+            await loadUsers(); show('Role updated.','status ok');
+          } catch(e){ show(e.message,'status error'); }
+        };
+        row.querySelector('.toggleBtn').onclick = async ()=>{
+          try{
+            const active = !u.is_active;
+            await api(`/api/v1/admin/users/${id}`,{method:'PATCH',body:JSON.stringify({isActive:active})});
+            await loadUsers(); show(`User ${active?'activated':'deactivated'}.`,'status ok');
+          } catch(e){ show(e.message,'status error'); }
+        };
+        row.querySelector('.resetBtn').onclick = async ()=>{
+          try{
+            const d = await api(`/api/v1/admin/users/${id}/password-reset`,{method:'POST'});
+            const p = d.data.tempPassword;
+            show(`Temporary password for ${esc(u.email)}: `, 'status ok');
+            const box = document.createElement('span');
+            box.className = 'temp-pw';
+            box.textContent = p;
+            msg.appendChild(box);
+          } catch(e){ show(e.message,'status error'); }
+        };
+        row.querySelector('.delBtn').onclick = async ()=>{
+          if (!confirm(`Deactivate ${esc(u.email)}?`)) return;
+          try{
+            await api(`/api/v1/admin/users/${id}`,{method:'DELETE'});
+            await loadUsers(); show('User deactivated.','status ok');
+          } catch(e){ show(e.message,'status error'); }
+        };
+      });
+    }
+    $('#createForm').onsubmit = async (e)=>{
+      e.preventDefault();
+      try{
+        const fd = new FormData(e.target);
+        await api('/api/v1/admin/users',{method:'POST',body:JSON.stringify(Object.fromEntries(fd))});
+        e.target.reset(); await loadUsers(); show('User created.','status ok');
+      } catch(err){ show(err.message,'status error'); }
+    };
+    $('#filterForm').onsubmit = async (e)=>{
+      e.preventDefault();
+      offset = 0;
+      filters = { q:$('#fQ').value, role:$('#fRole').value, active:$('#fActive').value };
+      limit = Number($('#fLimit').value);
+      await loadUsers();
+    };
+    $('#fClear').onclick = async ()=>{
+      $('#fQ').value=''; $('#fRole').value=''; $('#fActive').value=''; filters={}; offset=0;
+      await loadUsers();
+    };
+    $('#fPrev').onclick = async ()=>{ offset = Math.max(0, offset - limit); await loadUsers(); };
+    $('#fNext').onclick = async ()=>{ offset += limit; await loadUsers(); };
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Categories - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Categories</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <a href="/admin/campus">Campus</a>
+          <a href="/admin/markers">Markers</a>
+          <a href="/admin/categories" aria-current="page">Categories</a>
+          <a href="/admin/locations">Locations</a>
+          <a href="/admin/logs">Logs</a>
+          <a href="/admin/settings">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div class="card">
+          <h3 style="margin-top:0">Create category</h3>
+          <form id="createForm" class="form-grid">
+            <label>Name<input name="name" required /></label>
+            <label>Kind<select name="kind"><option value="campus">campus</option><option value="marker">marker</option></select></label>
+            <label>Icon (name/emoji)<input name="icon" placeholder="e.g. building" /></label>
+            <label>Colour<input name="colour" type="color" value="#22c55e" /></label>
+            <label>Sort order<input name="sortOrder" type="number" value="0" /></label>
+            <div style="align-self:end"><button class="primary" type="submit">Create</button></div>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Categories</h3>
+          <form id="filterForm" class="row">
+            <label>Kind<select id="fKind"><option value="">All</option><option value="campus">campus</option><option value="marker">marker</option></select></label>
+            <label class="row"><input type="checkbox" id="fInactive" /> Include inactive</label>
+            <button class="primary" type="submit">Filter</button>
+            <button type="button" id="fRefresh">Refresh</button>
+          </form>
+          <div id="catList" class="list"></div>
+          <div id="reassignBox" class="hidden" style="margin-top:10px">
+            <p>Category is in use. Choose a target category to reassign items to, then click "Reassign &amp; deactivate".</p>
+            <form id="reassignForm" class="row">
+              <input type="hidden" name="id" />
+              <label>Reassign to<select name="reassignTo" required></select></label>
+              <button class="primary" type="submit">Reassign &amp; deactivate</button>
+              <button type="button" id="reassignCancel">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    let pendingDelete = null;
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        await loadCategories();
+      } catch(e){ location.href='/login?next=/admin/categories'; }
+    }
+    async function loadCategories(){
+      const params = new URLSearchParams();
+      if ($('#fKind').value) params.set('kind', $('#fKind').value);
+      if ($('#fInactive').checked) params.set('active', 'all');
+      const d = await api('/api/v1/categories?' + params.toString());
+      const cats = d.data.items||[];
+      $('#catList').innerHTML = cats.map(c=>{
+        const active = !!c.is_active;
+        const swatch = c.colour?`<span style="display:inline-block;width:12px;height:12px;border:1px solid var(--line);border-radius:50%;background:${esc(c.colour)};margin-right:6px"></span>`:'';
+        return `<div style="padding:8px 0;border-bottom:1px solid var(--line)">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <div><b>${esc(c.name)}</b> <span class="badge">${esc(c.kind)}</span> ${swatch}${esc(c.icon||'')} ${!active?'<span class="badge err">inactive</span>':''}</div>
+            <div class="row"><button data-edit="${c.id}">Edit</button><button class="danger" data-del="${c.id}">${active?'Deactivate':'Activate'}</button></div>
+          </div>
+          <div class="muted" style="font-size:12px">sort ${esc(c.sort_order)} &middot; id ${c.id}</div>
+        </div>`;
+      }).join('') || '<span class="muted">No categories.</span>';
+      document.querySelectorAll('[data-edit]').forEach(btn=>{
+        btn.onclick = ()=>{
+          const c = cats.find(x=>x.id==btn.dataset.edit);
+          const name = prompt('Category name', c.name);
+          if (name === null) return;
+          const kind = prompt('Kind (campus|marker)', c.kind);
+          if (kind === null) return;
+          const icon = prompt('Icon (name or emoji)', c.icon || '');
+          if (icon === null) return;
+          const colour = prompt('Colour (hex)', c.colour || '#22c55e');
+          if (colour === null) return;
+          const sortOrder = prompt('Sort order', c.sort_order || '0');
+          if (sortOrder === null) return;
+          (async ()=>{
+            try{
+              await api(`/api/v1/categories/${c.id}`,{method:'PATCH',body:JSON.stringify({name,kind,icon,colour,sortOrder:Number(sortOrder),isActive:c.is_active})});
+              await loadCategories(); show('Category updated.','status ok');
+            } catch(e){ show(e.message,'status error'); }
+          })();
+        };
+      });
+      document.querySelectorAll('[data-del]').forEach(btn=>{
+        btn.onclick = async ()=>{
+          const c = cats.find(x=>x.id==btn.dataset.del);
+          if (!confirm(`${activeText(c)} ${esc(c.name)}?`)) return;
+          try{
+            await api(`/api/v1/categories/${c.id}`,{method:'DELETE'});
+            await loadCategories(); show('Category deactivated.','status ok');
+          } catch(e){
+            if (e.status === 409){
+              pendingDelete = c.id;
+              const box = $('#reassignBox'); box.classList.remove('hidden');
+              const sel = $('#reassignForm [name="reassignTo"]');
+              const sameKind = cats.filter(x=>x.kind===c.kind && x.id!==c.id && x.is_active);
+              sel.innerHTML = sameKind.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('') || '<option value="">No eligible target</option>';
+              show('Category is in use &mdash; pick a reassign target or cancel.','status warn');
+            } else { show(e.message,'status error'); }
+          }
+        };
+      });
+    }
+    function activeText(c){ return c.is_active?'Deactivate':'Activate'; }
+    $('#createForm').onsubmit = async (e)=>{
+      e.preventDefault();
+      try{
+        const fd = new FormData(e.target);
+        await api('/api/v1/categories',{method:'POST',body:JSON.stringify({
+          name: fd.get('name'), kind: fd.get('kind'), icon: fd.get('icon')||null,
+          colour: fd.get('colour')||null, sortOrder: Number(fd.get('sortOrder')||0),
+        })});
+        e.target.reset(); await loadCategories(); show('Category created.','status ok');
+      } catch(err){ show(err.message,'status error'); }
+    };
+    $('#filterForm').onsubmit = async (e)=>{ e.preventDefault(); await loadCategories(); };
+    $('#fRefresh').onclick = async ()=>{ await loadCategories(); };
+    $('#reassignCancel').onclick = ()=>{ $('#reassignBox').classList.add('hidden'); pendingDelete = null; };
+    $('#reassignForm').onsubmit = async (e)=>{
+      e.preventDefault();
+      try{
+        const fd = new FormData(e.target);
+        await api(`/api/v1/categories/${pendingDelete}`,{method:'DELETE'});
+        $('#reassignBox').classList.add('hidden'); pendingDelete = null;
+        await loadCategories(); show('Items reassigned and category deactivated.','status ok');
+      } catch(err){ show(err.message,'status error'); }
+    };
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

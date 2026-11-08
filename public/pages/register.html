@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand"><h1 id="app-name">IIUC Live Campus Map</h1></div>
+      <nav id="app-nav" class="app-nav" aria-label="Primary"></nav>
+      <div class="header-meta"><span id="badge-online" class="badge">Online</span><span id="badge-session" class="badge">Session</span></div>
+    </header>
+    <div class="statusbar"><span id="badge-socket" class="badge">Socket: idle</span><span class="muted">Student/teacher requests only. Access depends on server policy.</span></div>
+    <main id="main" class="app-main" tabindex="-1">
+      <section class="card" style="max-width:720px" aria-labelledby="reg-title">
+        <h2 id="reg-title">Request account</h2>
+        <p class="muted">Use an institutional email address where required by policy. Admin accounts are not self-registered.</p>
+        <div id="regNotice"></div>
+        <form id="regForm" class="stack" novalidate>
+          <label>Display name<input name="displayName" autocomplete="name" required maxlength="80" /></label>
+          <label>Institutional email<input name="email" type="email" autocomplete="email" required /></label>
+          <label>Role request
+            <select name="role" required>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+            </select>
+          </label>
+          <label>Student ID <span class="muted">(if applicable)</span><input name="studentId" autocomplete="off" maxlength="40" /></label>
+          <label>Password<input name="password" type="password" autocomplete="new-password" required minlength="8" /></label>
+          <label>Confirm password<input name="confirmPassword" type="password" autocomplete="new-password" required minlength="8" /></label>
+          <label class="inline"><input type="checkbox" name="termsAccepted" value="true" required /> I consent to the account/privacy terms presented by this deployment.</label>
+          <div class="actions">
+            <button class="primary" type="submit">Create account</button>
+            <a href="/login">Back to login</a>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer class="app-footer"><span>&copy; <span data-app-name>IIUC Live Campus Map</span></span><span>Self-registration is conditional on server configuration.</span></footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    (async () => {
+      const shell = await IIUC.renderShell({ publicOnly: true });
+      if (shell?.redirected) return;
+      if (shell?.config?.registrationEnabled === false) {
+        IIUC.setNotice($('#regNotice'), 'warn', 'Registration is currently disabled.');
+        $('#regForm').querySelectorAll('input,select,button').forEach(el => el.disabled = true);
+        return;
+      }
+      $('#regForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = IIUC.formObject(e.target);
+        data.termsAccepted = !!e.target.querySelector('[name="termsAccepted"]').checked;
+        if (data.password !== data.confirmPassword) return IIUC.setNotice($('#regNotice'), 'error', 'Passwords do not match.');
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        IIUC.setLoading($('#regNotice'), 'Submitting request…');
+        try {
+          const res = await IIUC.api('/api/v1/auth/register', { method: 'POST', body: JSON.stringify(data) });
+          IIUC.setNotice($('#regNotice'), 'success', 'Account created. Redirecting…');
+          location.href = IIUC.roleHome(res.data.user);
+        } catch (err) {
+          IIUC.setNotice($('#regNotice'), 'error', err.message || 'Registration could not be completed.');
+        } finally { btn.disabled = false; }
+      });
+    })();
+  </script>
+</body>
+</html>

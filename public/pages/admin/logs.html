@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Logs - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Logs</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <a href="/admin/campus">Campus</a>
+          <a href="/admin/markers">Markers</a>
+          <a href="/admin/categories">Categories</a>
+          <a href="/admin/locations">Locations</a>
+          <a href="/admin/logs" aria-current="page">Logs</a>
+          <a href="/admin/settings">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div class="card">
+          <h3 style="margin-top:0">Search audit log</h3>
+          <p class="muted">Actor, action and target are recorded. Passwords, cookies, tokens and raw GPS are never logged.</p>
+          <form id="filterForm" class="form-grid">
+            <label>Actor (user id)<input id="fActor" type="number" placeholder="user id" /></label>
+            <label>Action<input id="fAction" placeholder="e.g. user.disable" /></label>
+            <label>Search<input id="fQ" placeholder="action / target / details" /></label>
+            <label>From<input id="fFrom" type="datetime-local" /></label>
+            <label>To<input id="fTo" type="datetime-local" /></label>
+            <label>Limit<select id="fLimit"><option value="50">50</option><option value="100">100</option><option value="200">200</option></select></label>
+            <div style="align-self:end;display:flex;gap:8px"><button class="primary" type="submit">Search</button><button type="button" id="fClear">Clear</button></div>
+          </form>
+          <table id="logsTable">
+            <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Target</th><th>Details</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        await loadLogs();
+      } catch(e){ location.href='/login?next=/admin/logs'; }
+    }
+    function localISO(){
+      const now = new Date();
+      return now.toISOString().slice(0,16);
+    }
+    async function loadLogs(){
+      const params = new URLSearchParams();
+      if ($('#fActor').value) params.set('actorUserId', $('#fActor').value);
+      if ($('#fAction').value) params.set('action', $('#fAction').value);
+      if ($('#fQ').value) params.set('q', $('#fQ').value);
+      if ($('#fFrom').value) params.set('from', $('#fFrom').value + ':00');
+      if ($('#fTo').value) params.set('to', $('#fTo').value + ':59');
+      params.set('limit', $('#fLimit').value);
+      const d = await api('/api/v1/audit?' + params.toString());
+      const tbody = $('#logsTable tbody');
+      const items = d.data.items||[];
+      tbody.innerHTML = items.map(i=>{
+        const actor = i.actor_name ? `${esc(i.actor_name)} (${esc(i.actor_email)})` : (i.actor_email ? esc(i.actor_email) : 'system');
+        const details = i.details ? String(i.details).slice(0,220) : '';
+        return `<tr>
+          <td class="muted" style="font-size:12px">${esc(i.created_at)}</td>
+          <td class="muted" style="font-size:12px">${esc(actor)}</td>
+          <td><code>${esc(i.action||'-')}</code></td>
+          <td>${esc(i.target_type||'-')}${i.target_id?`<span class="coords"> #${esc(i.target_id)}</span>`:''}</td>
+          <td class="muted" style="font-size:12px;max-width:320px;overflow:hidden;text-overflow:ellipsis">${esc(details)}</td>
+        </tr>`;
+      }).join('') || '<tr><td colspan="5" class="empty">No log entries found.</td></tr>';
+    }
+    $('#filterForm').onsubmit = async (e)=>{ e.preventDefault(); await loadLogs(); };
+    $('#fClear').onclick = async ()=>{ $('#fActor').value=''; $('#fAction').value=''; $('#fQ').value=''; $('#fFrom').value=''; $('#fTo').value=''; await loadLogs(); };
+    $('#fFrom').value = localISO();
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

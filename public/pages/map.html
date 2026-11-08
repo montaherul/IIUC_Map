@@ -1,0 +1,952 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Map - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="/css/app.css" />
+  <style>
+    .map-controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:8px 0; }
+    .layer-toggles { display:flex; gap:8px; flex-wrap:wrap; align-items:center; padding:8px 10px; border:1px solid #334155; border-radius:10px; background:rgba(15,23,42,.35); }
+    .layer-toggles label { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#e5e7eb; cursor:pointer; }
+    .layer-count { color:#93c5fd; font-size:12px; font-variant-numeric:tabular-nums; }
+    .map-legend { display:flex; gap:10px; flex-wrap:wrap; align-items:center; padding:8px 10px; border:1px solid #334155; border-radius:10px; background:rgba(15,23,42,.35); font-size:13px; }
+    .legend-item { display:inline-flex; align-items:center; gap:6px; }
+    .legend-swatch { width:14px; height:14px; border-radius:3px; border:1px solid rgba(255,255,255,.2); display:inline-block; }
+    .legend-line { width:18px; height:0; border-top:4px solid #f59e0b; border-radius:2px; display:inline-block; }
+    .campus-summary { color:#cbd5e1; font-size:12px; }
+    .leaflet-div-icon.campus-icon { background:transparent; border:0; }
+    .campus-pin { width:28px; height:28px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); display:flex; align-items:center; justify-content:center; border:2px solid rgba(255,255,255,.9); box-shadow:0 2px 8px rgba(0,0,0,.35); }
+    .campus-pin span { transform:rotate(45deg); font-size:13px; line-height:1; }
+    .campus-pin.building { background:#2563eb; }
+    .campus-pin.road { background:#f59e0b; }
+    .campus-pin.poi { background:#16a34a; }
+    .campus-pin.unknown { background:#64748b; }
+    .leaflet-tooltip.campus-tip { background:#0f172a; color:#e5e7eb; border:1px solid #334155; box-shadow:0 4px 12px rgba(0,0,0,.4); }
+    .tile-control { display:inline-flex; gap:8px; flex-wrap:wrap; align-items:center; padding:8px 10px; border:1px solid #334155; border-radius:10px; background:rgba(15,23,42,.35); font-size:13px; color:#e5e7eb; }
+    .tile-control select { min-width:170px; }
+    .tile-status { font-size:12px; color:#94a3b8; }
+    .tile-status.error { color:#fca5a5; }
+    .tile-policy { font-size:12px; color:#93c5fd; }
+    [hidden] { display:none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>IIUC Live Campus Map</h1>
+    <nav class="row"><a href="/">Home</a><a href="/admin">Admin</a><a href="/login">Login</a><button id="logout">Logout</button></nav>
+    <span id="session" class="status"></span>
+  </header>
+  <main>
+    <div class="grid">
+      <div class="card" style="grid-column:1/-1">
+        <div class="row">
+          <input id="q" placeholder="Search campus/markers" />
+          <select id="campusCategory"><option value="">All campus categories</option></select>
+          <select id="markerCategory"><option value="">All marker categories</option></select>
+          <label><input type="checkbox" id="verifiedOnly" /> Verified only</label>
+          <button id="refresh" class="primary">Apply filters</button> <button id="myLoc">My location</button>
+          <button id="clearFilters">Clear</button>
+        </div>
+        <div class="map-controls">
+          <div class="layer-toggles" aria-label="Campus layer toggles">
+            <strong style="font-size:13px">Layers:</strong>
+            <label><input type="checkbox" id="layerBuildings" checked /> Buildings <span class="layer-count" id="countBuildings">(0)</span></label>
+            <label><input type="checkbox" id="layerRoads" checked /> Roads <span class="layer-count" id="countRoads">(0)</span></label>
+            <label><input type="checkbox" id="layerPois" checked /> POIs <span class="layer-count" id="countPois">(0)</span></label>
+            <label><input type="checkbox" id="layerMarkers" checked /> Markers</label>
+            <label><input type="checkbox" id="layerLive" checked /> Live users</label>
+          </div>
+          <div class="map-legend" aria-label="Map legend">
+            <strong>Legend:</strong>
+            <span class="legend-item"><span class="legend-swatch" style="background:#2563eb"></span>Building</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span>POI</span>
+            <span class="legend-item"><span class="legend-line"></span>Road/path</span>
+            <span class="legend-item"><span class="legend-line" style="border-top-color:#22d3ee;border-top-style:dashed"></span>Campus boundary</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#2563eb;border-radius:50%"></span>Marker</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#16a34a;border-radius:50%"></span>Live user</span>
+            <span class="legend-item campus-summary" id="campusSummary">0 campus features</span>
+          </div>
+          <div class="tile-control" aria-label="Base map settings">
+            <label for="tileProvider">Base map</label>
+            <select id="tileProvider" aria-label="Base map provider"></select>
+            <button id="retryTiles" type="button" class="secondary" hidden>Retry tiles</button>
+            <a id="tilePolicy" class="tile-policy" target="_blank" rel="noopener" hidden>Usage policy</a>
+            <span id="tileStatus" class="tile-status" role="status" aria-live="polite"></span>
+          </div>
+          <button id="fitCampus" type="button" class="secondary" title="Fit the map to seeded IIUC campus data">Fit campus</button>
+        </div>
+        <div class="card" style="margin-top:8px;padding:10px">
+          <div class="row">
+            <label class="row" style="gap:6px"><input id="locConsent" type="checkbox" /> I consent to share my current GPS location</label>
+            <label>Audience
+              <select id="locAudience">
+                <option value="all_authenticated">All authenticated users</option>
+                <option value="students">Students/teachers/admin</option>
+                <option value="teachers">Teachers/admin</option>
+              </select>
+            </label>
+            <label>Expiry
+              <select id="locExpiry">
+                <option value="15">15 minutes</option>
+                <option value="30" selected>30 minutes</option>
+                <option value="60">1 hour</option>
+                <option value="240">4 hours</option>
+                <option value="720">12 hours</option>
+              </select>
+            </label>
+            <button id="locStart" class="primary">Start sharing</button>
+            <button id="locStop" class="danger">Stop sharing</button>
+            <span id="geo" class="status">GPS idle.</span>
+          </div>
+          <p class="muted" style="margin:6px 0 0">Sharing is opt-in, audience-restricted, and ends on stop, expiry, or stale timeout.</p>
+        </div>
+        <div id="map"></div>
+        <p class="muted" style="margin:8px 0 0">Base map: selectable OpenStreetMap-derived providers; &copy; OpenStreetMap contributors (<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">copyright and licence</a>). Attribution is shown on the map and changes with the selected provider. Campus building, road, and facility data: &copy; OpenStreetMap contributors, licensed under the <a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">Open Database License (ODbL) 1.0</a>. Browser geolocation requires user permission and a secure context in deployment (HTTPS) or localhost. Admin role does not bypass location privacy by default.</p>
+      </div>
+      <div class="card"><h3>Campus locations</h3><div id="campusCount" class="status"></div><div id="campusList" class="list"></div></div>
+      <div class="card"><h3>Markers</h3><div id="markerCount" class="status"></div><div id="markerList" class="list"></div>
+        <form id="markerForm" class="row" style="margin-top:8px;flex-direction:column;align-items:stretch">
+          <input name="title" placeholder="Marker title" required />
+          <input name="description" placeholder="Description" />
+          <select name="categoryId" id="markerFormCategory"><option value="">No category</option></select>
+          <input name="latitude" placeholder="Lat (click map)" required />
+          <input name="longitude" placeholder="Lng (click map)" required />
+          <button class="primary" type="submit">Add marker</button>
+        </form>
+      </div>
+      <div class="card"><h3>Live users</h3><div id="liveList" class="list"></div></div>
+    </div>
+    <p id="msg" class="status"></p>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    // Real IIUC Kumira campus framing (main campus polygon: OSM way 276731950).
+    // The max bounds keep the female campus / nearby IIUC facilities in reach.
+    const CAMPUS_CENTER = [22.495154, 91.724368];
+    const CAMPUS_MAX_BOUNDS = [[22.4860, 91.7120], [22.5045, 91.7365]];
+    const CAMPUS_FALLBACK_BOUNDS = L.latLngBounds([22.4894, 91.7182], [22.5001, 91.7305]);
+    const CAMPUS_PAGE_SIZE = 500; // API maximum; default is only 200.
+
+    // The campus router is mounted at /api/v1/campus in this build; keep the
+    // richer /locations path as a compatibility fallback.
+    const CAMPUS_ENDPOINTS = ['/api/v1/campus', '/api/v1/campus/locations'];
+    let campusEndpoint = null;
+    let campusHasData = false;
+
+    const map = L.map('map', {
+      maxBounds: CAMPUS_MAX_BOUNDS,
+      maxBoundsViscosity: 0.9,
+      minZoom: 14,
+    }).setView(CAMPUS_CENTER, 16);
+
+    // -----------------------------------------------------------------------
+    // Base tiles: configurable providers, Referer-safe requests, no prefetch,
+    // no cache busting, and a local no-network fallback grid.
+    // -----------------------------------------------------------------------
+    const TILE_PROVIDER_STORAGE_KEY = 'iiuc.map.tileProvider';
+    const TILE_CONFIG_ENDPOINT = '/api/v1/config/public';
+
+    // Used only if /api/v1/config/public is unreachable. Keep this in sync with
+    // src/config/mapTiles.js; the server is still the source of truth.
+    const TILE_DEFAULT = {
+      defaultProvider: 'osm-standard',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      errorThreshold: 6,
+      providers: [{
+        id: 'osm-standard',
+        label: 'OpenStreetMap Standard',
+        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+        minZoom: 0,
+        maxZoom: 19,
+        policyUrl: 'https://operations.osmfoundation.org/policies/tiles/',
+        policySummary: 'Best-effort interactive use only. Requires a browser Referer and visible attribution.',
+        requiresReferer: true,
+      }],
+    };
+
+    const tileState = {
+      config: TILE_DEFAULT,
+      provider: null,
+      layer: null,
+      fallbackLayer: null,
+      failures: 0,
+      fallbackActive: false,
+      selectEl: null,
+      statusEl: null,
+      retryEl: null,
+      policyEl: null,
+    };
+
+    // A tiny canvas grid. It makes no network requests and keeps campus overlays
+    // readable when a provider is blocked, offline, or misconfigured.
+    const OfflineGridLayer = L.GridLayer.extend({
+      createTile: function (coords) {
+        const tile = document.createElement('canvas');
+        const size = this.getTileSize();
+        tile.width = size.x;
+        tile.height = size.y;
+        const ctx = tile.getContext('2d');
+
+        ctx.fillStyle = '#0b1220';
+        ctx.fillRect(0, 0, size.x, size.y);
+
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.16)';
+        ctx.lineWidth = 1;
+        for (let x = 0.5; x < size.x; x += 32) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, size.y); ctx.stroke();
+        }
+        for (let y = 0.5; y < size.y; y += 32) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(size.x, y); ctx.stroke();
+        }
+
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+        ctx.beginPath();
+        ctx.moveTo(size.x / 2 - 10, size.y / 2); ctx.lineTo(size.x / 2 + 10, size.y / 2);
+        ctx.moveTo(size.x / 2, size.y / 2 - 10); ctx.lineTo(size.x / 2, size.y / 2 + 10);
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(148, 163, 184, 0.6)';
+        ctx.font = '11px system-ui, sans-serif';
+        ctx.fillText(`${coords.z}/${coords.x}/${coords.y}`, 8, 16);
+        return tile;
+      },
+    });
+
+    function storageGet(key) {
+      try { return localStorage.getItem(key); } catch (_) { return null; }
+    }
+    function storageSet(key, value) {
+      try { localStorage.setItem(key, value); } catch (_) { /* private mode */ }
+    }
+
+    function tileProviderById(config, id) {
+      return (config.providers || []).find((provider) => provider.id === id) || null;
+    }
+
+    function preferredTileProviderId(config) {
+      let fromUrl = null;
+      try { fromUrl = new URL(location.href).searchParams.get('tiles'); } catch (_) {}
+      const candidates = [fromUrl, storageGet(TILE_PROVIDER_STORAGE_KEY), config.defaultProvider];
+      for (const candidate of candidates) {
+        if (candidate && tileProviderById(config, candidate)) return candidate;
+      }
+      return (config.providers && config.providers[0] && config.providers[0].id) || TILE_DEFAULT.defaultProvider;
+    }
+
+    function setTileStatus(text, isError) {
+      if (!tileState.statusEl) return;
+      tileState.statusEl.textContent = text || '';
+      tileState.statusEl.className = isError ? 'tile-status error' : 'tile-status';
+    }
+
+    function updateRetryVisibility() {
+      if (tileState.retryEl) tileState.retryEl.hidden = !(tileState.fallbackActive || tileState.failures > 0);
+    }
+
+    function updatePolicyLink(provider) {
+      if (!tileState.policyEl) return;
+      if (provider && provider.policyUrl) {
+        tileState.policyEl.href = provider.policyUrl;
+        tileState.policyEl.title = provider.policySummary || 'Provider usage policy';
+        tileState.policyEl.hidden = false;
+      } else {
+        tileState.policyEl.hidden = true;
+        tileState.policyEl.removeAttribute('href');
+      }
+    }
+
+    function removeTileLayer(layer) {
+      if (!layer) return;
+      layer.off('tileerror', onTileError);
+      layer.off('tileload', onTileLoad);
+      if (map.hasLayer(layer)) map.removeLayer(layer);
+    }
+
+    function removeFallbackLayer() {
+      if (tileState.fallbackLayer) {
+        removeTileLayer(tileState.fallbackLayer);
+        tileState.fallbackLayer = null;
+      }
+    }
+
+    function buildTileLayer(provider) {
+      return L.tileLayer(provider.urlTemplate, {
+        minZoom: provider.minZoom != null ? provider.minZoom : 0,
+        maxZoom: provider.maxZoom != null ? provider.maxZoom : 19,
+        attribution: provider.attribution,
+        // Request-reduction options: no retina duplication, no cache-busting,
+        // no tile prefetching. Leaflet still honours provider cache headers.
+        keepBuffer: 1,
+        updateWhenIdle: true,
+        updateWhenZooming: false,
+        detectRetina: false,
+      });
+    }
+
+    function activateTileFallback(reason) {
+      if (tileState.fallbackActive) return;
+      tileState.fallbackActive = true;
+      tileState.failures = 0;
+
+      removeTileLayer(tileState.layer);
+      tileState.layer = null;
+
+      if (!tileState.fallbackLayer) {
+        tileState.fallbackLayer = new OfflineGridLayer({
+          pane: 'tilePane',
+          minZoom: 0,
+          maxZoom: 22,
+          keepBuffer: 1,
+          updateWhenIdle: true,
+          updateWhenZooming: false,
+          attribution: 'Offline base map &middot; campus overlays only',
+        });
+      }
+      tileState.fallbackLayer.addTo(map);
+
+      updateRetryVisibility();
+      setTileStatus(
+        `Base map unavailable (${reason}). Showing the offline grid; campus overlays still work. ` +
+        'Choose another provider or press Retry tiles.',
+        true
+      );
+    }
+
+    function onTileError() {
+      if (tileState.fallbackActive) return;
+      tileState.failures += 1;
+      updateRetryVisibility();
+      const threshold = tileState.config.errorThreshold || TILE_DEFAULT.errorThreshold;
+      if (tileState.failures >= threshold) {
+        activateTileFallback(`${tileState.failures} tile errors`);
+      } else {
+        setTileStatus(`Tile error ${tileState.failures}/${threshold}. If the base map stays blank, press Retry tiles.`, true);
+      }
+    }
+
+    function onTileLoad() {
+      if (tileState.fallbackActive) return;
+      if (tileState.failures > 0) {
+        tileState.failures = 0;
+        updateRetryVisibility();
+        if (tileState.provider) setTileStatus(`Base map: ${tileState.provider.label}`, false);
+      }
+    }
+
+    function applyTileProvider(provider, options) {
+      options = options || {};
+      if (!provider || !provider.urlTemplate) return;
+
+      tileState.provider = provider;
+      tileState.failures = 0;
+      tileState.fallbackActive = false;
+
+      removeFallbackLayer();
+      removeTileLayer(tileState.layer);
+
+      tileState.layer = buildTileLayer(provider);
+      tileState.layer.on('tileerror', onTileError);
+      tileState.layer.on('tileload', onTileLoad);
+      tileState.layer.addTo(map);
+      if (typeof map.setMaxZoom === 'function') map.setMaxZoom(provider.maxZoom || 19);
+
+      if (tileState.selectEl) tileState.selectEl.value = provider.id;
+      updatePolicyLink(provider);
+      updateRetryVisibility();
+      setTileStatus(`Base map: ${provider.label}${provider.requiresReferer ? ' (Referer required)' : ''}`, false);
+
+      if (options.persist !== false) {
+        storageSet(TILE_PROVIDER_STORAGE_KEY, provider.id);
+        try {
+          const url = new URL(location.href);
+          url.searchParams.set('tiles', provider.id);
+          history.replaceState(null, '', url.toString());
+        } catch (_) { /* history/URL may be unavailable */ }
+      }
+    }
+
+    function retryTiles() {
+      if (!tileState.provider) return;
+      applyTileProvider(tileState.provider, { persist: false });
+    }
+
+    function normalizeTileConfig(payload) {
+      if (!payload || !Array.isArray(payload.providers)) return null;
+      const providers = payload.providers.filter((provider) => (
+        provider
+        && provider.id
+        && typeof provider.urlTemplate === 'string'
+        && /^https?:\/\//i.test(provider.urlTemplate)
+        && provider.urlTemplate.includes('{z}')
+        && provider.urlTemplate.includes('{x}')
+        && provider.urlTemplate.includes('{y}')
+        && provider.attribution
+      ));
+      if (!providers.length) return null;
+      const threshold = Number(payload.errorThreshold);
+      return {
+        defaultProvider: payload.defaultProvider || providers[0].id,
+        referrerPolicy: payload.referrerPolicy || TILE_DEFAULT.referrerPolicy,
+        errorThreshold: Number.isFinite(threshold) ? Math.max(1, Math.min(50, Math.floor(threshold))) : TILE_DEFAULT.errorThreshold,
+        providers,
+      };
+    }
+
+    async function loadTileConfiguration() {
+      tileState.selectEl = document.getElementById('tileProvider');
+      tileState.statusEl = document.getElementById('tileStatus');
+      tileState.retryEl = document.getElementById('retryTiles');
+      tileState.policyEl = document.getElementById('tilePolicy');
+
+      let config = null;
+      try {
+        const response = await api(TILE_CONFIG_ENDPOINT);
+        config = normalizeTileConfig(response && response.data && response.data.tiles);
+      } catch (_) { /* fall back to the built-in provider below */ }
+
+      tileState.config = config || TILE_DEFAULT;
+      if (!config) setTileStatus('Base map configuration unavailable; using the built-in provider.', true);
+
+      if (tileState.selectEl) {
+        tileState.selectEl.innerHTML = tileState.config.providers
+          .map((provider) => `<option value="${esc(provider.id)}">${esc(provider.label || provider.id)}</option>`)
+          .join('');
+        tileState.selectEl.addEventListener('change', () => {
+          const provider = tileProviderById(tileState.config, tileState.selectEl.value);
+          if (provider) applyTileProvider(provider);
+        });
+      }
+      if (tileState.retryEl) tileState.retryEl.addEventListener('click', retryTiles);
+
+      const provider = tileProviderById(tileState.config, preferredTileProviderId(tileState.config))
+        || tileState.config.providers[0];
+      applyTileProvider(provider, { persist: false });
+      storageSet(TILE_PROVIDER_STORAGE_KEY, provider.id);
+    }
+
+
+    // Custom panes give deterministic layer ordering:
+    // roads < buildings < facilities < campus points < user markers < live users < tooltips/popups.
+    function makePane(name, zIndex) {
+      const pane = map.createPane(name);
+      pane.style.zIndex = String(zIndex);
+      return pane;
+    }
+    makePane('campusBoundaryPane', 400);
+    makePane('campusRoadsPane', 401);
+    makePane('campusBuildingsPane', 405);
+    makePane('campusPoisPane', 410);
+    makePane('campusPointsPane', 415);
+    makePane('userMarkersPane', 420);
+    makePane('liveUsersPane', 620);
+
+    const campusBuildingsLayer = L.layerGroup().addTo(map);
+    const campusRoadsLayer = L.layerGroup().addTo(map);
+    const campusPoisLayer = L.layerGroup().addTo(map);
+    const markerLayer = L.layerGroup().addTo(map);
+    const liveLayer = L.layerGroup().addTo(map);
+    const liveMarkers = new Map();
+    const msg = $('#msg');
+    function show(t, cls) { cls = cls || 'status'; msg.textContent = t; msg.className = cls; }
+
+    function num(v) {
+      if (v == null || v === '') return null;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : null;
+    }
+
+    function parseGeo(item) {
+      const raw = item && (item.boundary_geojson || item.boundaryGeoJson || item.geojson || item.geometry);
+      if (!raw) return null;
+      try { return typeof raw === 'string' ? JSON.parse(raw) : raw; } catch (_) { return null; }
+    }
+
+    function geometryTypeLabel(geo) {
+      const types = [];
+      function visit(g) {
+        if (!g || typeof g !== 'object') return;
+        if (g.type === 'FeatureCollection') { (g.features || []).forEach(visit); return; }
+        if (g.type === 'Feature') { visit(g.geometry); return; }
+        if (g.type === 'GeometryCollection') { (g.geometries || []).forEach(visit); return; }
+        if (g.type && !types.includes(g.type)) types.push(g.type);
+      }
+      visit(geo);
+      return types.join(' / ');
+    }
+
+    function kindLabel(kind) {
+      return kind === 'building' ? 'building' : kind === 'road' ? 'road' : 'campus facility';
+    }
+
+    // The OSM university outline is seeded as a campus facility; draw it as a
+    // dashed boundary under the buildings instead of as a filled green area.
+    function isCampusBoundary(item) {
+      const name = String((item && (item.name || item.title)) || '').toLowerCase();
+      const category = String((item && (item.category_name || item.category)) || '').toLowerCase();
+      const source = String((item && item.source) || '');
+      return source.includes('way/276731950')
+        || (/international islamic university/.test(name) && /facilit/.test(category));
+    }
+
+    // Category names take precedence. Geometry type is the next signal. The legacy
+    // keyword heuristic only runs when neither is definitive, so "Roads & Paths"
+    // and "Campus Facilities" can never be misclassified by name matching.
+    function campusKind(item, geo) {
+      if (geo === undefined) geo = parseGeo(item);
+      const rawCategory = String((item && (item.category_name || item.category || item.categoryName)) || '').trim().toLowerCase();
+      if (rawCategory) {
+        if (/(^|\b)(road|roads|path|paths|street|lane|walkway|footway|driveway|route)(\b|$)/.test(rawCategory)) return 'road';
+        if (/(^|\b)(building|buildings|structure|structures|academic|hall)(\b|$)/.test(rawCategory)) return 'building';
+        if (/(^|\b)(facilit|facilities|poi|point of interest|amenity|gate|parking|field|garden|ground|mosque|library|canteen|cafeteria)(\b|$)/.test(rawCategory)) return 'poi';
+      }
+      const gt = geometryTypeLabel(geo).toLowerCase();
+      if (gt.includes('line')) return 'road';
+      if (gt.includes('polygon')) return 'building';
+      if (gt.includes('point')) return 'poi';
+
+      const hay = [
+        item && item.kind, item && item.type, item && item.location_type, item && item.locationType,
+        item && item.feature_type, item && item.featureType, item && item.name, item && item.title,
+        item && item.description,
+      ].filter(Boolean).join(' ').toLowerCase();
+      if (/(^|\b)(road|street|path|walkway|lane|corridor|route)(\b|$)/.test(hay)) return 'road';
+      if (/(^|\b)(building|hall|academic|faculty|department|library|office|hostel|mosque|auditorium|admin|block|center|centre)(\b|$)/.test(hay)) return 'building';
+      return 'poi';
+    }
+
+    function campusIcon(kind) {
+      const cls = kind === 'building' ? 'building' : kind === 'road' ? 'road' : kind === 'poi' ? 'poi' : 'unknown';
+      const glyph = kind === 'building' ? '&#127970;' : kind === 'road' ? '&#128739;' : kind === 'poi' ? '&#128205;' : '&#9679;';
+      return L.divIcon({ className: 'campus-icon', html: `<div class="campus-pin ${cls}"><span>${glyph}</span></div>`, iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -24] });
+    }
+
+    function displayCampusName(item, kind) {
+      const name = String((item && (item.name || item.title)) || '').trim();
+      if (name) return name;
+      const base = kind === 'building' ? 'Unnamed building' : kind === 'road' ? 'Unnamed road' : 'Unnamed campus facility';
+      const source = String((item && item.source) || '').trim();
+      return source ? `${base} (${source})` : base;
+    }
+
+    function campusPopup(item, kind, geomType) {
+      const category = (item && (item.category_name || item.category || item.categoryName)) || 'Uncategorized';
+      const src = item && item.source
+        ? `<div class="muted">Source: ${esc(item.source)}</div>`
+        : '<div class="muted">Source: not recorded</div>';
+      const geometry = geomType || 'Point';
+      const lat = num(item && item.latitude), lng = num(item && item.longitude);
+      const coords = (lat != null && lng != null) ? `<div class="muted">${lat.toFixed(5)}, ${lng.toFixed(5)}</div>` : '';
+      const desc = item && item.description ? `<div>${esc(item.description)}</div>` : '';
+      const verified = item && item.is_verified ? '<div><i>Verified</i></div>' : '';
+      return `<b>${esc(displayCampusName(item, kind))}</b>`
+        + `<div class="muted">Category: ${esc(category)} &bull; Type: ${esc(kindLabel(kind))}</div>`
+        + `<div class="muted">Geometry: ${esc(geometry)}</div>`
+        + `${src}${coords}${desc}${verified}`;
+    }
+
+    function bindCampusInteractions(target, item, kind, geomType) {
+      const popup = campusPopup(item, kind, geomType);
+      const name = String((item && (item.name || item.title)) || '').trim();
+      function bindOne(layer) {
+        if (layer && typeof layer.eachLayer === 'function') { layer.eachLayer(bindOne); return; }
+        layer.bindPopup(popup);
+        if (name) layer.bindTooltip(esc(name), { direction: 'top', sticky: true, opacity: 0.95, className: 'campus-tip' });
+      }
+      if (typeof target.eachLayer === 'function') target.eachLayer(bindOne);
+      else bindOne(target);
+    }
+
+    function roadStyle() { return { color: '#f59e0b', weight: 4, opacity: 0.9, lineCap: 'round', lineJoin: 'round' }; }
+    function buildingStyle() { return { color: '#1d4ed8', weight: 1.5, opacity: 0.95, fillColor: '#3b82f6', fillOpacity: 0.35 }; }
+    function poiStyle() { return { color: '#15803d', weight: 1.5, opacity: 0.95, fillColor: '#22c55e', fillOpacity: 0.28 }; }
+    function boundaryStyle() { return { color: '#22d3ee', weight: 2.5, opacity: 0.9, dashArray: '7 5', fill: false }; }
+    function styleForKind(kind) { return kind === 'road' ? roadStyle() : kind === 'building' ? buildingStyle() : poiStyle(); }
+    function pointStyle(kind) {
+      const color = kind === 'building' ? '#2563eb' : kind === 'road' ? '#f59e0b' : '#16a34a';
+      const fill = kind === 'building' ? '#3b82f6' : kind === 'road' ? '#fbbf24' : '#22c55e';
+      return { radius: 5, color, weight: 2, fillColor: fill, fillOpacity: 0.9 };
+    }
+
+    function extendLayerBounds(target, layer) {
+      if (!layer) return;
+      try {
+        if (typeof layer.getBounds === 'function') {
+          const bounds = layer.getBounds();
+          if (bounds && bounds.isValid()) target.extend(bounds);
+        } else if (typeof layer.getLatLng === 'function') {
+          const ll = layer.getLatLng();
+          if (ll && Number.isFinite(ll.lat) && Number.isFinite(ll.lng)) target.extend(ll);
+        }
+      } catch (_) { /* ignore malformed geometry bounds */ }
+      if (typeof layer.eachLayer === 'function') {
+        layer.eachLayer((child) => extendLayerBounds(target, child));
+      }
+    }
+
+    function clearCampusLayers() {
+      campusBuildingsLayer.clearLayers();
+      campusRoadsLayer.clearLayers();
+      campusPoisLayer.clearLayers();
+    }
+
+    function renderCampus(items) {
+      clearCampusLayers();
+      const points = [];
+      const counts = { building: 0, road: 0, poi: 0 };
+      const bounds = L.latLngBounds();
+
+      (items || []).forEach((item) => {
+        if (!item || typeof item !== 'object') return;
+        const geo = parseGeo(item);
+        const geomType = geometryTypeLabel(geo);
+        const kind = campusKind(item, geo || undefined);
+        counts[kind] = (counts[kind] || 0) + 1;
+
+        const target = kind === 'road' ? campusRoadsLayer : kind === 'building' ? campusBuildingsLayer : campusPoisLayer;
+        const boundary = isCampusBoundary(item);
+        const lat = num(item.latitude), lng = num(item.longitude);
+        let added = false;
+
+        if (geo) {
+          const pane = boundary ? 'campusBoundaryPane' : kind === 'road' ? 'campusRoadsPane' : kind === 'building' ? 'campusBuildingsPane' : 'campusPoisPane';
+          try {
+            const gj = L.geoJSON(geo, {
+              pane,
+              bubblingMouseEvents: false,
+              style: () => (boundary ? boundaryStyle() : styleForKind(kind)),
+              pointToLayer: (_feature, latlng) => L.circleMarker(latlng, Object.assign(pointStyle(kind), {
+                pane: 'campusPointsPane',
+                bubblingMouseEvents: false,
+              })),
+            });
+            if (gj.getLayers().length) {
+              bindCampusInteractions(gj, item, kind, geomType || 'Geometry');
+              gj.addTo(target);
+              extendLayerBounds(bounds, gj);
+              added = true;
+            }
+          } catch (_) { /* invalid/unrenderable GeoJSON: fall back to the item coordinates */ }
+        }
+
+        if (!added && lat != null && lng != null) {
+          const marker = L.marker([lat, lng], {
+            icon: campusIcon(kind),
+            pane: 'campusPointsPane',
+            title: displayCampusName(item, kind),
+          });
+          bindCampusInteractions(marker, item, kind, geomType ? `${geomType} (fallback marker)` : 'Point (fallback marker)');
+          marker.addTo(target);
+          bounds.extend([lat, lng]);
+          points.push([lat, lng]);
+        }
+      });
+
+      return { points, counts, bounds };
+    }
+
+    function updateLayerCounts(counts, total) {
+      const c = counts || {};
+      const buildings = c.building || 0, roads = c.road || 0, pois = c.poi || 0;
+      $('#countBuildings').textContent = `(${buildings})`;
+      $('#countRoads').textContent = `(${roads})`;
+      $('#countPois').textContent = `(${pois})`;
+      const summary = $('#campusSummary');
+      if (summary) summary.textContent = `${Number(total) || 0} campus feature${Number(total) === 1 ? '' : 's'}`;
+    }
+
+    function resetCampusCounts() { updateLayerCounts({}, 0); }
+
+    function applyLayerToggles() {
+      const pairs = [
+        ['layerBuildings', campusBuildingsLayer],
+        ['layerRoads', campusRoadsLayer],
+        ['layerPois', campusPoisLayer],
+        ['layerMarkers', markerLayer],
+        ['layerLive', liveLayer],
+      ];
+      pairs.forEach(([id, layer]) => {
+        const on = document.getElementById(id)?.checked;
+        const has = map.hasLayer(layer);
+        if (on && !has) layer.addTo(map);
+        if (!on && has) map.removeLayer(layer);
+      });
+    }
+    ['layerBuildings', 'layerRoads', 'layerPois', 'layerMarkers', 'layerLive'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('change', applyLayerToggles);
+    });
+
+    let campusDataBounds = null;
+    let campusAutoFitted = false;
+
+    function fitCampus(opts) {
+      const bounds = (campusDataBounds && campusDataBounds.isValid()) ? campusDataBounds : CAMPUS_FALLBACK_BOUNDS;
+      map.fitBounds(bounds.pad(0.06), Object.assign({ maxZoom: 18, padding: [18, 18] }, opts || {}));
+    }
+
+    function maybeAutoFit(bounds, updateStored) {
+      if (updateStored && bounds && bounds.isValid()) campusDataBounds = bounds;
+      if (campusAutoFitted) return;
+      if (!campusDataBounds || !campusDataBounds.isValid()) return;
+      campusAutoFitted = true;
+      fitCampus({ animate: false });
+    }
+
+    $('#fitCampus').addEventListener('click', () => fitCampus({ animate: true }));
+
+    map.on('click', (e) => {
+      const latEl = document.querySelector('[name=latitude]');
+      const lngEl = document.querySelector('[name=longitude]');
+      if (latEl) latEl.value = e.latlng.lat.toFixed(6);
+      if (lngEl) lngEl.value = e.latlng.lng.toFixed(6);
+      show(`Picked ${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`);
+    });
+
+    function isNotFoundError(e) {
+      return !!(e && (e.status === 404 || e.data?.error?.code === 'NOT_FOUND'));
+    }
+
+    function campusQuery(filters, offset) {
+      const params = new URLSearchParams();
+      params.set('limit', String(CAMPUS_PAGE_SIZE));
+      params.set('offset', String(offset));
+      if (filters.q) params.set('q', filters.q);
+      if (filters.categoryId) params.set('categoryId', filters.categoryId);
+      if (filters.verifiedOnly) params.set('verifiedOnly', '1');
+      return params.toString();
+    }
+
+    async function fetchCampusPage(path, filters, offset) {
+      const d = await api(`${path}?${campusQuery(filters, offset)}`);
+      const payload = d && d.data;
+      let items = [];
+      if (Array.isArray(payload)) items = payload;
+      else if (payload && Array.isArray(payload.items)) items = payload.items;
+      else if (payload && Array.isArray(payload.locations)) items = payload.locations;
+      else if (payload && Array.isArray(payload.campusLocations)) items = payload.campusLocations;
+      const total = payload && payload.total != null && Number.isFinite(Number(payload.total)) ? Number(payload.total) : null;
+      return { items, total };
+    }
+
+    async function paginateCampus(path, filters) {
+      const all = [];
+      const seen = new Set();
+      let offset = 0;
+      for (let page = 0; page < 50; page += 1) {
+        const { items, total } = await fetchCampusPage(path, filters, offset);
+        let added = 0;
+        for (const item of items) {
+          const key = item && item.id != null
+            ? `id:${item.id}`
+            : `x:${item && item.name}:${item && item.latitude}:${item && item.longitude}:${offset}:${all.length}`;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          all.push(item);
+          added += 1;
+        }
+        offset += items.length;
+        if (items.length < CAMPUS_PAGE_SIZE) break;
+        if (total != null && total > 0 && all.length >= total) break;
+        if (added === 0) break; // guard against an endpoint that ignores offset
+      }
+      return all;
+    }
+
+    async function fetchAllCampus(filters) {
+      const candidates = campusEndpoint
+        ? [campusEndpoint, ...CAMPUS_ENDPOINTS.filter((p) => p !== campusEndpoint)]
+        : CAMPUS_ENDPOINTS.slice();
+      let lastError = null;
+      for (const path of candidates) {
+        try {
+          const items = await paginateCampus(path, filters);
+          campusEndpoint = path;
+          return items;
+        } catch (e) {
+          lastError = e;
+          if (!isNotFoundError(e)) throw e;
+          if (campusEndpoint === path) campusEndpoint = null;
+        }
+      }
+      throw lastError || new Error('Campus data endpoint is unavailable.');
+    }
+
+    async function loadCategories() {
+      try {
+        const d = await api('/api/v1/categories');
+        const items = (d && d.data && d.data.items) ? d.data.items : [];
+        const campus = items.filter(c => c.kind === 'campus');
+        const marker = items.filter(c => c.kind === 'marker');
+        $('#campusCategory').innerHTML = '<option value="">All campus categories</option>' + campus.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+        $('#markerCategory').innerHTML = '<option value="">All marker categories</option>' + marker.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+        $('#markerFormCategory').innerHTML = '<option value="">No category</option>' + marker.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+      } catch (e) { /* non-fatal */ }
+    }
+
+    async function loadCampus() {
+      const q = ($('#q').value || '').trim();
+      const categoryId = $('#campusCategory').value || '';
+      const verifiedOnly = $('#verifiedOnly').checked;
+      const hasFilters = !!(q || categoryId || verifiedOnly);
+
+      // limit=500 + offset pagination, so a 200-row API default can never hide features.
+      const items = await fetchAllCampus({ q, categoryId, verifiedOnly });
+      const rendered = renderCampus(items);
+      updateLayerCounts(rendered.counts, items.length);
+
+      if (!hasFilters) campusHasData = items.length > 0;
+
+      if (!items.length) {
+        $('#campusCount').textContent = '0 campus features';
+        const message = (hasFilters && campusHasData)
+          ? 'No campus locations match the current filters.'
+          : 'Campus data not seeded yet. Run the campus seed script to add buildings, roads, and facilities.';
+        $('#campusList').innerHTML = `<span class="muted">${esc(message)}</span>`;
+      } else {
+        const c = rendered.counts;
+        $('#campusCount').textContent = `${items.length} shown${hasFilters ? ' (filtered)' : ''} · ${c.building || 0} buildings · ${c.road || 0} roads · ${c.poi || 0} POIs`;
+        $('#campusList').innerHTML = items.map((i) => {
+          const geo = parseGeo(i);
+          const kind = campusKind(i, geo || undefined);
+          const geomType = geometryTypeLabel(geo) || 'point';
+          const cat = esc(i.category_name || i.category || 'uncategorized');
+          const lat = num(i.latitude), lng = num(i.longitude);
+          const coords = (lat != null && lng != null) ? `${lat.toFixed(5)}, ${lng.toFixed(5)}` : '';
+          const meta = [geomType, coords, i.source, i.is_verified ? 'verified' : ''].filter(Boolean).join(' &bull; ');
+          return `<div><b>${esc(displayCampusName(i, kind))}</b> <span class="muted">${esc(kindLabel(kind))} &bull; ${cat}</span><br><span class="muted">${meta}</span>${i.description?`<br><span>${esc(i.description)}</span>`:''}</div>`;
+        }).join('');
+      }
+
+      maybeAutoFit(rendered.bounds, !hasFilters);
+      return { items, points: rendered.points, counts: rendered.counts, bounds: rendered.bounds };
+    }
+
+    async function loadMarkers() {
+      markerLayer.clearLayers();
+      const q = encodeURIComponent($('#q').value || '');
+      const markerCat = encodeURIComponent($('#markerCategory').value || '');
+      const d = await api(`/api/v1/markers?q=${q}&categoryId=${markerCat}`);
+      const items = (d && d.data && d.data.items) ? d.data.items : [];
+      $('#markerCount').textContent = `${items.length} shown`;
+      $('#markerList').innerHTML = items.map(i=>`<div><b>${esc(i.title)}</b> <span class="muted">${esc(i.category_name||'')}</span><br><span class="muted">by ${esc(i.owner_name || 'unknown')}</span></div>`).join('') || '<span class="muted">No markers match.</span>';
+      const points = [];
+      items.forEach(i => {
+        const lat = num(i.latitude), lng = num(i.longitude); if (lat == null || lng == null) return;
+        L.circleMarker([lat,lng], {radius:6,color:'#2563eb',fillColor:'#3b82f6',fillOpacity:.7,pane:'userMarkersPane',bubblingMouseEvents:false}).addTo(markerLayer).bindPopup(`<b>${esc(i.title)}</b><br>${esc(i.category_name||'uncategorized')}<br>${esc(i.description||'')}<br><span class="muted">by ${esc(i.owner_name||'unknown')}</span>`);
+        points.push([lat, lng]);
+      });
+      return { items, points };
+    }
+
+    async function loadAll() {
+      const errors = [];
+      let campus = { items: [], points: [] };
+      let markers = { items: [], points: [] };
+      try { campus = await loadCampus(); }
+      catch (e) {
+        errors.push(`Campus: ${e.message}`);
+        clearCampusLayers();
+        resetCampusCounts();
+        $('#campusCount').textContent = 'Unavailable';
+        $('#campusList').innerHTML = `<span class="error">${esc(e.message)}</span>`;
+      }
+      try { markers = await loadMarkers(); }
+      catch (e) { errors.push(`Markers: ${e.message}`); $('#markerCount').textContent = 'Unavailable'; $('#markerList').innerHTML = `<span class="error">${esc(e.message)}</span>`; }
+      try { const live = await api('/api/v1/location/visible'); renderLive((live && live.data && live.data.items) || []); } catch (e) { /* optional auth */ }
+      applyLayerToggles();
+      if (errors.length) show(errors.join(' | '), 'status error');
+      else if (!campus.items.length) show('Campus data not seeded yet.', 'status');
+      else show(`Loaded ${campus.items.length} campus features and ${markers.items.length} markers.`, 'status ok');
+    }
+
+    function renderLive(items) {
+      liveLayer.clearLayers(); liveMarkers.clear();
+      $('#liveList').innerHTML = (items || []).map(i=>`<div><b>${esc(i.displayName)}</b> <span class="muted">${esc(i.role || '')} &bull; ${esc(i.audience||'')}</span><br><span class="muted">${esc(i.recordedAt||'')}${i.expiresAt ? ' &bull; expires ' + esc(i.expiresAt) : ''}</span></div>`).join('') || '<span class="muted">No visible live locations.</span>';
+      (items || []).forEach(i=>{ const lat=num(i.latitude), lng=num(i.longitude); if(lat==null||lng==null) return; const m=L.circleMarker([lat,lng],{radius:8,color:'#16a34a',fillColor:'#22c55e',fillOpacity:.8,pane:'liveUsersPane',bubblingMouseEvents:false}).addTo(liveLayer).bindPopup(`<b>${esc(i.displayName||'User')}</b><br>${esc(i.role||'')}<br>${esc(i.recordedAt||'')}`); liveMarkers.set(i.userId,m); });
+      applyLayerToggles();
+    }
+
+    async function syncLocationStatus() {
+      try {
+        const res = await api('/api/v1/location/status');
+        const prefs = res && res.data && res.data.prefs;
+        if (prefs?.is_sharing) {
+          $('#locConsent').checked = true;
+          if (prefs.audience && prefs.audience !== 'none') $('#locAudience').value = prefs.audience;
+          $('#geo').textContent = prefs.expires_at ? `Sharing enabled until ${prefs.expires_at}` : 'Sharing enabled.';
+        }
+      } catch (_) {}
+    }
+
+    $('#markerForm').onsubmit = async (e)=>{ e.preventDefault(); try{ const fd=new FormData(e.target); await api('/api/v1/markers',{method:'POST',body:JSON.stringify({title:fd.get('title'),description:fd.get('description'),categoryId:fd.get('categoryId')||null,latitude:fd.get('latitude'),longitude:fd.get('longitude')})}); e.target.reset(); show('Marker created.','status ok'); loadAll(); } catch(err){ show(err.message,'status error'); } };
+    $('#refresh').onclick = ()=>loadAll().catch(e=>show(e.message,'status error'));
+    $('#clearFilters').onclick = ()=>{ $('#q').value=''; $('#campusCategory').value=''; $('#markerCategory').value=''; $('#verifiedOnly').checked=false; loadAll().catch(e=>show(e.message,'status error')); };
+    ['#q','#campusCategory','#markerCategory','#verifiedOnly'].forEach(sel=>$(sel).addEventListener(sel==='#q'?'keydown':'change', (e)=>{ if(sel!=='#q'||e.key==='Enter') loadAll().catch(err=>show(err.message,'status error')); }));
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+
+    let watchId = null;
+    async function stopSharingLocal(message) {
+      if (watchId != null && navigator.geolocation) navigator.geolocation.clearWatch(watchId);
+      watchId = null;
+      if (message) $('#geo').textContent = message;
+    }
+    $('#locStart').onclick = async ()=>{
+      try {
+        if (!$('#locConsent').checked) return show('Check the consent box before sharing location.', 'status error');
+        const audience = $('#locAudience').value;
+        const durationMinutes = Number($('#locExpiry').value || 30);
+        await api('/api/v1/location/prefs',{method:'POST',body:JSON.stringify({isSharing:true,audience,durationMinutes})});
+        if (!navigator.geolocation) return show('Geolocation not supported by this browser.', 'status error');
+        await stopSharingLocal();
+        watchId = navigator.geolocation.watchPosition(async (pos)=>{
+          $('#geo').textContent = `GPS ${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} (±${Math.round(pos.coords.accuracy)}m)`;
+          try {
+            await api('/api/v1/location/update',{method:'POST',body:JSON.stringify({latitude:pos.coords.latitude,longitude:pos.coords.longitude,accuracy:pos.coords.accuracy})});
+          } catch(e) {
+            $('#geo').textContent = e.message;
+            if (['EXPIRED','NOT_SHARING'].includes(e.data?.error?.code)) await stopSharingLocal(e.message);
+          }
+        }, (err)=>{ $('#geo').textContent = `GPS error: ${err.message}`; }, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
+        show('Sharing started with recorded consent.','status ok');
+      } catch(e){ show(e.message,'status error'); }
+    };
+    $('#locStop').onclick = async ()=>{ try{ await stopSharingLocal('GPS stopped.'); await api('/api/v1/location/stop',{method:'POST'}); $('#locConsent').checked = false; loadAll(); show('Sharing stopped.','status ok'); } catch(e){ show(e.message,'status error'); } };
+
+    let myLocMarker=null; document.getElementById('myLoc').onclick=()=>{ if(!navigator.geolocation) return show('Geolocation not supported.','status error'); navigator.geolocation.getCurrentPosition((pos)=>{ const ll=[pos.coords.latitude,pos.coords.longitude]; if(myLocMarker) map.removeLayer(myLocMarker); myLocMarker=L.circleMarker(ll,{radius:8,color:'#1d4ed8',fillColor:'#3b82f6',fillOpacity:.9,pane:'userMarkersPane',bubblingMouseEvents:false}).addTo(map).bindPopup('Your location (not shared)').openPopup(); map.setView(ll,16); },(e)=>show('GPS error: '+e.message,'status error'),{enableHighAccuracy:true}); };
+
+    async function init() {
+      await loadTileConfiguration();
+
+      let me = null;
+      try {
+        me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name} (${me.data.user.role})`;
+        await syncLocationStatus();
+        await loadCategories();
+      } catch (e) {
+        show('Campus data loading attempted. Sign in for markers/live features. ' + e.message, 'status error');
+        loadCategories().catch(()=>{});
+      }
+
+      await loadAll().catch(e=>show(e.message,'status error'));
+
+      if (!me) return;
+      try {
+        const socket = io({ withCredentials:true });
+        socket.on('location:snapshot', renderLive);
+        socket.on('location:updated', ()=>api('/api/v1/location/visible').then(d=>renderLive(d.data.items)).catch(()=>{}));
+        socket.on('location:removed', async (payload)=>{ if (payload?.userId === me.data.user.id) await stopSharingLocal('Sharing ended.'); api('/api/v1/location/visible').then(d=>renderLive(d.data.items)).catch(()=>{}); });
+        socket.on('marker:created', loadAll); socket.on('marker:updated', loadAll); socket.on('marker:deleted', loadAll);
+        socket.on('connect_error', (e)=>show('Socket: '+e.message,'status error'));
+      } catch (e) { show('Socket unavailable: ' + e.message, 'status error'); }
+    }
+    init();
+  </script>
+</body>
+</html>

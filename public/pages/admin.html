@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <header>
+    <h1>IIUC Admin</h1>
+    <nav class="row"><a href="/">Home</a><a href="/map">Map</a><a href="/login">Login</a><button id="logout">Logout</button></nav>
+    <span id="session" class="status"></span>
+  </header>
+  <main>
+    <div class="card">
+      <h3 style="margin-top:0">Categories</h3>
+      <form id="catForm" class="row">
+        <input name="name" placeholder="Category name" required />
+        <select name="kind"><option value="campus">campus</option><option value="marker">marker</option></select>
+        <button class="primary" type="submit">Create</button>
+      </form>
+      <div id="catList" class="list" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Campus locations</h3>
+      <form id="campusForm" class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:end">
+        <input type="hidden" name="id" />
+        <label>Name<input name="name" required /></label>
+        <label>Latitude<input name="latitude" required placeholder="22.4966" /></label>
+        <label>Longitude<input name="longitude" required placeholder="91.7214" /></label>
+        <label>Category<select name="categoryId" id="campusCat"><option value="">None</option></select></label>
+        <label>Source<input name="source" placeholder="survey/map" /></label>
+        <label>Description<input name="description" /></label>
+        <label><input type="checkbox" name="isVerified" /> Verified</label>
+        <div class="row"><button class="primary" type="submit" id="campusSave">Create</button><button type="button" id="campusReset">Reset</button></div>
+      </form>
+      <div class="row" style="margin-top:10px"><input id="adminQ" placeholder="Search campus" /><select id="adminCatFilter"><option value="">All categories</option></select><label><input type="checkbox" id="adminInactive" /> Include inactive</label><button id="adminRefresh">Refresh</button></div>
+      <div id="campusAdminList" class="list" style="margin-top:10px"></div>
+    </div>
+    <p id="msg" class="status"></p>
+  </main>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    let categories = [];
+
+    async function loadCategories() {
+      const d = await api('/api/v1/categories?includeInactive=1');
+      categories = d.data.items;
+      $('#catList').innerHTML = categories.map(c=>`<div class="row" style="justify-content:space-between"><span><b>${esc(c.name)}</b> <span class="muted">${esc(c.kind)}${c.is_active?'':' • inactive'}</span></span><span class="row"><button data-edit-cat="${c.id}">Edit</button><button class="danger" data-del-cat="${c.id}">Deactivate</button></span></div>`).join('') || '<span class="muted">No categories.</span>';
+      const campusOpts = '<option value="">None</option>' + categories.filter(c=>c.kind==='campus'&&c.is_active).map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+      $('#campusCat').innerHTML = campusOpts;
+      $('#adminCatFilter').innerHTML = '<option value="">All categories</option>' + categories.filter(c=>c.kind==='campus').map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+      document.querySelectorAll('[data-edit-cat]').forEach(btn=>btn.onclick=async()=>{ const c=categories.find(x=>x.id==btn.dataset.editCat); const name=prompt('Category name', c.name); if(name==null) return; const kind=prompt('Kind (campus|marker)', c.kind); if(kind==null) return; try{ await api(`/api/v1/categories/${c.id}`,{method:'PATCH',body:JSON.stringify({name,kind})}); await loadCategories(); show('Category updated.','status ok'); }catch(e){show(e.message,'status error');} });
+      document.querySelectorAll('[data-del-cat]').forEach(btn=>btn.onclick=async()=>{ if(!confirm('Deactivate category?')) return; try{ await api(`/api/v1/categories/${btn.dataset.delCat}`,{method:'DELETE'}); await loadCategories(); show('Category deactivated.','status ok'); }catch(e){show(e.message,'status error');} });
+    }
+
+    function fillCampusForm(item) {
+      const f = $('#campusForm');
+      f.id.value = item?.id || '';
+      f.name.value = item?.name || '';
+      f.latitude.value = item?.latitude ?? '';
+      f.longitude.value = item?.longitude ?? '';
+      f.categoryId.value = item?.category_id || '';
+      f.source.value = item?.source || '';
+      f.description.value = item?.description || '';
+      f.isVerified.checked = !!item?.is_verified;
+      $('#campusSave').textContent = item ? 'Update' : 'Create';
+    }
+
+    async function loadCampus() {
+      const q = encodeURIComponent($('#adminQ').value || '');
+      const cat = encodeURIComponent($('#adminCatFilter').value || '');
+      const inactive = $('#adminInactive').checked ? '1' : '';
+      const d = await api(`/api/v1/campus?q=${q}&categoryId=${cat}&includeInactive=${inactive}&limit=300`);
+      $('#campusAdminList').innerHTML = d.data.items.map(i=>`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><div class="row" style="justify-content:space-between"><b>${esc(i.name)}</b><span class="row"><button data-edit="${i.id}">Edit</button><button class="danger" data-del="${i.id}">Deactivate</button></span></div><div class="muted">${esc(i.category_name||'uncategorized')} • ${i.latitude}, ${i.longitude}${i.is_verified?' • verified':''}${i.is_active?'':' • inactive'}${i.source?` • ${esc(i.source)}`:''}</div>${i.description?`<div>${esc(i.description)}</div>`:''}</div>`).join('') || '<span class="muted">No campus locations.</span>';
+      document.querySelectorAll('[data-edit]').forEach(btn=>btn.onclick=()=>{ const item=d.data.items.find(x=>x.id==btn.dataset.edit); fillCampusForm(item); window.scrollTo({top:0,behavior:'smooth'}); });
+      document.querySelectorAll('[data-del]').forEach(btn=>btn.onclick=async()=>{ if(!confirm('Deactivate campus location?')) return; try{ await api(`/api/v1/campus/${btn.dataset.del}`,{method:'DELETE'}); await loadCampus(); show('Location deactivated.','status ok'); }catch(e){show(e.message,'status error');} });
+    }
+
+    $('#catForm').onsubmit = async (e)=>{ e.preventDefault(); try{ const fd=new FormData(e.target); await api('/api/v1/categories',{method:'POST',body:JSON.stringify(Object.fromEntries(fd))}); e.target.reset(); await loadCategories(); show('Category created.','status ok'); }catch(err){show(err.message,'status error');} };
+    $('#campusForm').onsubmit = async (e)=>{ e.preventDefault(); try{
+      const fd=new FormData(e.target);
+      const body = { name:fd.get('name'), latitude:fd.get('latitude'), longitude:fd.get('longitude'), categoryId:fd.get('categoryId')||null, source:fd.get('source'), description:fd.get('description'), isVerified: !!fd.get('isVerified') };
+      const id = fd.get('id');
+      if (id) await api(`/api/v1/campus/${id}`,{method:'PATCH',body:JSON.stringify(body)});
+      else await api('/api/v1/campus',{method:'POST',body:JSON.stringify(body)});
+      fillCampusForm(null); e.target.reset(); await loadCampus(); show(id?'Location updated.':'Location created.','status ok');
+    } catch(err){show(err.message,'status error');} };
+    $('#campusReset').onclick = ()=>fillCampusForm(null);
+    $('#adminRefresh').onclick = ()=>loadCampus().catch(e=>show(e.message,'status error'));
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+
+    async function init() {
+      try {
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin') { show('Admin role required.', 'status error'); return; }
+        await loadCategories();
+        await loadCampus();
+      } catch(e) { show('Login as admin required. ' + e.message, 'status error'); }
+    }
+    init();
+  </script>
+</body>
+</html>

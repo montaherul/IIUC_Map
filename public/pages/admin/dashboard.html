@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Dashboard - IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="admin-page">
+  <div class="app-shell">
+    <header class="admin-header">
+      <h1>Admin &middot; Dashboard</h1>
+      <div class="admin-session" id="session">checking&hellip;</div>
+      <div class="admin-actions">
+        <nav class="row">
+          <a href="/">View site</a>
+          <a href="/map">Map</a>
+          <button id="logout">Logout</button>
+        </nav>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside class="admin-sidebar">
+        <h2>Admin</h2>
+        <nav class="side-nav">
+          <a href="/admin/dashboard" aria-current="page">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <a href="/admin/campus">Campus</a>
+          <a href="/admin/markers">Markers</a>
+          <a href="/admin/categories">Categories</a>
+          <a href="/admin/locations">Locations</a>
+          <a href="/admin/logs">Logs</a>
+          <a href="/admin/settings">Settings</a>
+          <a href="/admin/system-health">System health</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <p id="msg" class="status"></p>
+        <div class="stats" id="stats"></div>
+        <div class="grid">
+          <div class="card">
+            <h3>Users by role</h3>
+            <div id="usersByRole" class="list"></div>
+          </div>
+          <div class="card">
+            <h3>Recent audit</h3>
+            <div id="recentAudit" class="list"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="admin-footer">IIUC Live Campus Map &middot; Admin &middot; Aggregates only &mdash; no coordinates on this page</footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    const msg = $('#msg');
+    function show(t, cls='status'){ msg.textContent=t; msg.className=cls; }
+    function statCard(id, label, value, sub){
+      return `<div class="stat" id="${id}"><span class="value">${esc(value)}</span><span class="label">${esc(label)}</span>${sub?`<span class="sub">${esc(sub)}</span>`:''}</div>`;
+    }
+    async function init(){
+      try{
+        const me = await api('/api/v1/auth/me');
+        $('#session').textContent = `${me.data.user.display_name || me.data.user.email} (${me.data.user.role})`;
+        if (me.data.user.role !== 'admin'){ show('Admin role required.','status error'); return; }
+        const d = await api('/api/v1/admin/stats');
+        const s = d.data.stats;
+        $('#stats').innerHTML = [
+          statCard('statUsers','Users',s.users),
+          statCard('statActive','Active users',s.activeUsers),
+          statCard('statCampus','Campus locations',s.campusLocations),
+          statCard('statMarkers','Markers',s.markers),
+          statCard('statLive','Live sharing',s.liveSharing),
+          statCard('statSharing','Sharing enabled',s.sharingEnabled),
+          statCard('statAudit','Audit logs',s.auditLogs),
+          statCard('statCategories','Categories',s.categories),
+          statCard('statSockets','Socket clients',s.socketClients),
+        ].join('');
+        const roleBox = $('#usersByRole');
+        roleBox.innerHTML = (s.usersByRole||[]).map(r=>`<div class="row" style="justify-content:space-between"><span>${esc(r.role)}</span><span class="badge">${r.count}</span></div>`).join('') || '<span class="muted">No role data.</span>';
+        const a = await api('/api/v1/audit?limit=10');
+        $('#recentAudit').innerHTML = (a.data.items||[]).map(i=>{
+          const actor = i.actor_name || i.actor_email || 'system';
+          return `<div class="row" style="justify-content:space-between"><div><div>${esc(i.action)}</div><div class="muted" style="font-size:12px">${esc(i.target_type||'')}${i.target_id?` #${esc(i.target_id)}`:''} &middot; ${esc(i.created_at)}</div></div><div class="muted" style="font-size:12px">${esc(actor)}</div></div>`;
+        }).join('') || '<span class="muted">No audit events.</span>';
+      } catch(e){ show(e.message,'status error'); }
+    }
+    $('#logout').onclick = async ()=>{ try{ await api('/api/v1/auth/logout',{method:'POST'}); location.href='/login'; } catch(e){ show(e.message,'status error'); } };
+    init();
+  </script>
+</body>
+</html>

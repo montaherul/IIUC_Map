@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IIUC Live Campus Map</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand"><h1 id="app-name">IIUC Live Campus Map</h1><span class="brand-sub">Campus navigation &amp; location awareness</span></div>
+      <nav id="app-nav" class="app-nav" aria-label="Primary"></nav>
+      <div class="header-meta">
+        <span id="badge-online" class="badge">Online</span>
+        <span id="badge-session" class="badge">Session</span>
+      </div>
+    </header>
+    <div class="statusbar" aria-label="System status">
+      <span id="badge-socket" class="badge">Socket: idle</span>
+      <span class="muted">Public landing. Private GPS is never shown without authorization.</span>
+    </div>
+    <main id="main" class="app-main" tabindex="-1">
+      <section class="card hero">
+        <h2>Find campus places. Share location only with consent.</h2>
+        <p class="muted">A web-based campus map for IIUC with verified locations, role-aware access, and opt-in live location sharing controls.</p>
+        <div class="actions">
+          <a class="primary" href="/login" style="display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;background:var(--accent);color:var(--accent-text);font-weight:600">Login</a>
+          <a id="registerCta" class="secondary" href="/register" style="display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;border:1px solid #334155">Register</a>
+          <a href="/map" style="display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;border:1px solid #334155">Open map</a>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="About">
+        <article class="card"><h3>Campus map</h3><p class="muted">Browse campus locations and markers on an OpenStreetMap base layer. Verified campus data is managed by admins.</p></article>
+        <article class="card"><h3>Live location</h3><p class="muted">Location sharing is opt-in, audience-limited, expiring, and can be stopped at any time. No background GPS without active consent.</p></article>
+        <article class="card"><h3>Privacy</h3><p class="muted">The app stores latest authorized live location state needed for the feature. Admin access is role-based and audited where implemented.</p></article>
+      </section>
+
+      <section class="card" aria-labelledby="preview-title">
+        <div class="spread">
+          <div>
+            <h3 id="preview-title">Public map preview</h3>
+            <p class="muted">Preview shows public campus information only. Live user GPS requires sign-in and authorized sharing.</p>
+          </div>
+          <a href="/map">Full map</a>
+        </div>
+        <div id="previewStatus" class="loading" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading preview…</span></div>
+        <div id="previewList" class="list" hidden></div>
+        <div id="previewEmpty" class="empty" hidden>No public campus locations are available yet.</div>
+      </section>
+
+      <section class="card" aria-labelledby="privacy-title">
+        <h3 id="privacy-title">Privacy notice</h3>
+        <p class="muted">By using live location features you control when sharing starts, who can view it, and when it expires. You can stop sharing to remove your live point. Use official campus policies and deployment hardening before production rollout.</p>
+      </section>
+    </main>
+    <footer class="app-footer">
+      <span>&copy; <span data-app-name>IIUC Live Campus Map</span></span>
+      <span>Base map data &copy; OpenStreetMap contributors.</span>
+    </footer>
+  </div>
+  <script src="/js/app.js"></script>
+  <script>
+    (async () => {
+      const shell = await IIUC.renderShell({ publicOnly: true });
+      if (shell?.redirected) return;
+      if (shell?.config?.registrationEnabled === false) $('#registerCta')?.remove();
+      const status = $('#previewStatus'), list = $('#previewList'), empty = $('#previewEmpty');
+      try {
+        const res = await fetch('/api/v1/campus?limit=5', { headers: { 'X-Requested-With': 'fetch' }, credentials: 'same-origin' });
+        const data = await res.json().catch(() => ({}));
+        status.hidden = true;
+        const items = Array.isArray(data?.data?.items) ? data.data.items : [];
+        if (!items.length) { empty.hidden = false; return; }
+        list.hidden = false;
+        list.innerHTML = items.map(i => `<div><strong>${IIUC.esc(i.name)}</strong> <span class="muted">${IIUC.esc(i.category_name || 'campus')}</span></div>`).join('');
+      } catch (e) {
+        status.outerHTML = IIUC.noticeHtml('warn', 'Public preview is unavailable right now. The full map may require sign-in or data setup.');
+      }
+    })();
+  </script>
+</body>
+</html>

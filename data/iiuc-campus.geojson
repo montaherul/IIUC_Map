@@ -1,0 +1,8215 @@
+{
+  "type": "FeatureCollection",
+  "name": "IIUC Campus (OpenStreetMap extract, ODbL)",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 169724542,
+        "name": "IIUC Central Mosque",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/169724542",
+        "description": "Building: yes; Amenity: place_of_worship; Religion: muslim"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7207468,
+              22.4959336
+            ],
+            [
+              91.7210194,
+              22.4959442
+            ],
+            [
+              91.7210203,
+              22.495925
+            ],
+            [
+              91.721113,
+              22.4959286
+            ],
+            [
+              91.7211225,
+              22.495721
+            ],
+            [
+              91.721034,
+              22.4957175
+            ],
+            [
+              91.7210356,
+              22.495682
+            ],
+            [
+              91.7207587,
+              22.4956712
+            ],
+            [
+              91.7207468,
+              22.4959336
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 169725438,
+        "name": "IIUC Central Auditorium",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/169725438",
+        "description": "Building: yes; Amenity: conference_centre"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7219216,
+              22.497278
+            ],
+            [
+              91.7220423,
+              22.4972805
+            ],
+            [
+              91.7221201,
+              22.4971677
+            ],
+            [
+              91.7221308,
+              22.4968084
+            ],
+            [
+              91.7221053,
+              22.4968034
+            ],
+            [
+              91.7221053,
+              22.4967762
+            ],
+            [
+              91.7220761,
+              22.4967711
+            ],
+            [
+              91.7220772,
+              22.4967254
+            ],
+            [
+              91.7220061,
+              22.496708
+            ],
+            [
+              91.7219417,
+              22.4967229
+            ],
+            [
+              91.7219243,
+              22.4968394
+            ],
+            [
+              91.7218693,
+              22.4968394
+            ],
+            [
+              91.7218653,
+              22.4971491
+            ],
+            [
+              91.72186,
+              22.4972482
+            ],
+            [
+              91.7219297,
+              22.4972507
+            ],
+            [
+              91.7219216,
+              22.497278
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 169725502,
+        "name": "IIUC Central Library",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/169725502",
+        "description": "Building: yes; Amenity: library; Operator: International Islamic University Chittagong; Operator type: university; Wheelchair: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7215834,
+              22.496097
+            ],
+            [
+              91.7218946,
+              22.4960999
+            ],
+            [
+              91.7218977,
+              22.4958101
+            ],
+            [
+              91.72154,
+              22.4958068
+            ],
+            [
+              91.7215374,
+              22.4960456
+            ],
+            [
+              91.7215839,
+              22.496046
+            ],
+            [
+              91.7215834,
+              22.496097
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 169727660,
+        "name": "IIUC Cafeteria",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/169727660",
+        "description": "Building: yes; Amenity: fast_food"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7214369,
+              22.4972452
+            ],
+            [
+              91.7216494,
+              22.4972462
+            ],
+            [
+              91.7216498,
+              22.4971849
+            ],
+            [
+              91.7216912,
+              22.4971851
+            ],
+            [
+              91.721692,
+              22.4970278
+            ],
+            [
+              91.7213763,
+              22.4970263
+            ],
+            [
+              91.7213755,
+              22.4971701
+            ],
+            [
+              91.7214022,
+              22.4971702
+            ],
+            [
+              91.7214019,
+              22.4972097
+            ],
+            [
+              91.7214371,
+              22.4972099
+            ],
+            [
+              91.7214369,
+              22.4972452
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 169761132,
+        "name": "IIUC Academic Building-4 (Pharmacy & MDP)",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/169761132",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7209856,
+              22.497566
+            ],
+            [
+              91.7214286,
+              22.4975672
+            ],
+            [
+              91.7214291,
+              22.4974062
+            ],
+            [
+              91.7212528,
+              22.4974058
+            ],
+            [
+              91.7212325,
+              22.4974125
+            ],
+            [
+              91.7209861,
+              22.4974118
+            ],
+            [
+              91.7209856,
+              22.497566
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517840673,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517840673",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7189312,
+              22.4986879
+            ],
+            [
+              91.7189791,
+              22.4987027
+            ],
+            [
+              91.7190113,
+              22.4986135
+            ],
+            [
+              91.7189634,
+              22.4985987
+            ],
+            [
+              91.7189312,
+              22.4986879
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517840674,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517840674",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7189862,
+              22.4989593
+            ],
+            [
+              91.7190224,
+              22.498963
+            ],
+            [
+              91.7190263,
+              22.4989306
+            ],
+            [
+              91.7189901,
+              22.4989269
+            ],
+            [
+              91.7189862,
+              22.4989593
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517840675,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517840675",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7188185,
+              22.4989234
+            ],
+            [
+              91.7188691,
+              22.4989395
+            ],
+            [
+              91.7188919,
+              22.4988788
+            ],
+            [
+              91.7188413,
+              22.4988626
+            ],
+            [
+              91.7188185,
+              22.4989234
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517840676,
+        "name": "IIUC CSE Extension Building",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517840676",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7186968,
+              22.4991694
+            ],
+            [
+              91.7189315,
+              22.4992875
+            ],
+            [
+              91.7190556,
+              22.4990768
+            ],
+            [
+              91.7188209,
+              22.4989588
+            ],
+            [
+              91.7186968,
+              22.4991694
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517840677,
+        "name": "IIUC Hazrat Uthman (R) Hall, IIUC",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517840677",
+        "description": "Building: yes; Tourism: hostel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7185953,
+              22.4995239
+            ],
+            [
+              91.7187511,
+              22.4996028
+            ],
+            [
+              91.7189288,
+              22.4993034
+            ],
+            [
+              91.7187731,
+              22.4992245
+            ],
+            [
+              91.7185953,
+              22.4995239
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517840678,
+        "name": "IIUC CSE Extention Building 2",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517840678",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7184194,
+              22.4998923
+            ],
+            [
+              91.7185758,
+              22.4999536
+            ],
+            [
+              91.7187496,
+              22.499619
+            ],
+            [
+              91.7185954,
+              22.4995501
+            ],
+            [
+              91.7184194,
+              22.4998923
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851132,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851132",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7222605,
+              22.4954943
+            ],
+            [
+              91.72239,
+              22.4954955
+            ],
+            [
+              91.7223906,
+              22.4954423
+            ],
+            [
+              91.7222611,
+              22.4954411
+            ],
+            [
+              91.7222605,
+              22.4954943
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851133,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851133",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7220707,
+              22.4954912
+            ],
+            [
+              91.7221575,
+              22.495492
+            ],
+            [
+              91.7221579,
+              22.4954565
+            ],
+            [
+              91.7220711,
+              22.4954557
+            ],
+            [
+              91.7220707,
+              22.4954912
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851134,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851134",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7220211,
+              22.4956672
+            ],
+            [
+              91.7220514,
+              22.4956674
+            ],
+            [
+              91.7220519,
+              22.4956163
+            ],
+            [
+              91.7220217,
+              22.4956161
+            ],
+            [
+              91.7220211,
+              22.4956672
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851135,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851135",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7219916,
+              22.495858
+            ],
+            [
+              91.7222709,
+              22.4958605
+            ],
+            [
+              91.7222719,
+              22.4957712
+            ],
+            [
+              91.7219926,
+              22.4957686
+            ],
+            [
+              91.7219916,
+              22.495858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851136,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851136",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7223644,
+              22.4957303
+            ],
+            [
+              91.7223981,
+              22.4957307
+            ],
+            [
+              91.7223993,
+              22.495625
+            ],
+            [
+              91.7223656,
+              22.4956247
+            ],
+            [
+              91.7223644,
+              22.4957303
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851139,
+        "name": "IIUC Civil Engineering Workshop",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851139",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7190548,
+              22.4985882
+            ],
+            [
+              91.7191816,
+              22.4986421
+            ],
+            [
+              91.7192427,
+              22.4985192
+            ],
+            [
+              91.7192578,
+              22.4984638
+            ],
+            [
+              91.7192428,
+              22.4984361
+            ],
+            [
+              91.7191501,
+              22.4983967
+            ],
+            [
+              91.7190548,
+              22.4985882
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851158,
+        "name": "IIUC Faculty of Business Administration, IIUC",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851158",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7212991,
+              22.4980324
+            ],
+            [
+              91.7214064,
+              22.4980102
+            ],
+            [
+              91.7214047,
+              22.4979612
+            ],
+            [
+              91.7217424,
+              22.4979512
+            ],
+            [
+              91.7217384,
+              22.4978367
+            ],
+            [
+              91.7208693,
+              22.497864
+            ],
+            [
+              91.7208652,
+              22.4979724
+            ],
+            [
+              91.7211929,
+              22.4979748
+            ],
+            [
+              91.7212138,
+              22.4980334
+            ],
+            [
+              91.7212991,
+              22.4980324
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851163,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851163",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7213331,
+              22.4985808
+            ],
+            [
+              91.7214411,
+              22.4986192
+            ],
+            [
+              91.721471,
+              22.4985473
+            ],
+            [
+              91.7213631,
+              22.4985089
+            ],
+            [
+              91.7213331,
+              22.4985808
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851170,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851170",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7237619,
+              22.4961491
+            ],
+            [
+              91.723951,
+              22.4962111
+            ],
+            [
+              91.7239728,
+              22.4961543
+            ],
+            [
+              91.7237837,
+              22.4960923
+            ],
+            [
+              91.7237619,
+              22.4961491
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851171,
+        "name": "IIUC Teachers Dormitory",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851171",
+        "description": "Building: dormitory"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.723499,
+              22.4951963
+            ],
+            [
+              91.7236339,
+              22.4952487
+            ],
+            [
+              91.7238767,
+              22.4950281
+            ],
+            [
+              91.7238249,
+              22.4949795
+            ],
+            [
+              91.7236184,
+              22.495169
+            ],
+            [
+              91.7235312,
+              22.4951356
+            ],
+            [
+              91.723499,
+              22.4951963
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851172,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851172",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7236103,
+              22.4948184
+            ],
+            [
+              91.723845,
+              22.4949274
+            ],
+            [
+              91.7238651,
+              22.494951
+            ],
+            [
+              91.723908,
+              22.4949733
+            ],
+            [
+              91.7239626,
+              22.4948549
+            ],
+            [
+              91.7236596,
+              22.4947223
+            ],
+            [
+              91.7236103,
+              22.4948184
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851173,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851173",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7242688,
+              22.4953376
+            ],
+            [
+              91.724879,
+              22.4952979
+            ],
+            [
+              91.7248598,
+              22.4950463
+            ],
+            [
+              91.7242496,
+              22.495086
+            ],
+            [
+              91.7242688,
+              22.4953376
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851174,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851174",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7242929,
+              22.4956523
+            ],
+            [
+              91.7248937,
+              22.4956052
+            ],
+            [
+              91.7248671,
+              22.4953145
+            ],
+            [
+              91.7242662,
+              22.4953615
+            ],
+            [
+              91.7242929,
+              22.4956523
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851175,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851175",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7229572,
+              22.4958196
+            ],
+            [
+              91.7235875,
+              22.4958443
+            ],
+            [
+              91.7236025,
+              22.4955192
+            ],
+            [
+              91.7229722,
+              22.4954944
+            ],
+            [
+              91.7229572,
+              22.4958196
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851176,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851176",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7228392,
+              22.4958034
+            ],
+            [
+              91.7229156,
+              22.495801
+            ],
+            [
+              91.7229141,
+              22.49576
+            ],
+            [
+              91.7228376,
+              22.4957625
+            ],
+            [
+              91.7228392,
+              22.4958034
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851177,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851177",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7228419,
+              22.4956672
+            ],
+            [
+              91.7229104,
+              22.4956712
+            ],
+            [
+              91.7229171,
+              22.4955733
+            ],
+            [
+              91.7228486,
+              22.4955693
+            ],
+            [
+              91.7228419,
+              22.4956672
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851178,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851178",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7226179,
+              22.4955767
+            ],
+            [
+              91.7226868,
+              22.4955799
+            ],
+            [
+              91.7226935,
+              22.4954585
+            ],
+            [
+              91.7226246,
+              22.4954553
+            ],
+            [
+              91.7226179,
+              22.4955767
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851191,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851191",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7247583,
+              22.4942658
+            ],
+            [
+              91.7247851,
+              22.4942645
+            ],
+            [
+              91.7247839,
+              22.4942422
+            ],
+            [
+              91.7247571,
+              22.4942435
+            ],
+            [
+              91.7247583,
+              22.4942658
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851192,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851192",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7245813,
+              22.4935731
+            ],
+            [
+              91.7246355,
+              22.4936071
+            ],
+            [
+              91.7247428,
+              22.4934609
+            ],
+            [
+              91.7246886,
+              22.4934269
+            ],
+            [
+              91.7245813,
+              22.4935731
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851193,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851193",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.724313,
+              22.4939969
+            ],
+            [
+              91.7243372,
+              22.4939969
+            ],
+            [
+              91.7243372,
+              22.4939548
+            ],
+            [
+              91.724313,
+              22.4939548
+            ],
+            [
+              91.724313,
+              22.4939969
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851194,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851194",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7241105,
+              22.4940452
+            ],
+            [
+              91.7241341,
+              22.4940552
+            ],
+            [
+              91.7241556,
+              22.4940118
+            ],
+            [
+              91.724132,
+              22.4940018
+            ],
+            [
+              91.7241105,
+              22.4940452
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851195,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851195",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7239818,
+              22.4942596
+            ],
+            [
+              91.7240121,
+              22.4942768
+            ],
+            [
+              91.7240483,
+              22.4942223
+            ],
+            [
+              91.724018,
+              22.4942051
+            ],
+            [
+              91.7239818,
+              22.4942596
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851196,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851196",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7240623,
+              22.4941295
+            ],
+            [
+              91.7241143,
+              22.4941547
+            ],
+            [
+              91.7241559,
+              22.4940816
+            ],
+            [
+              91.7241038,
+              22.4940564
+            ],
+            [
+              91.7240623,
+              22.4941295
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851197,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851197",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7237538,
+              22.4938835
+            ],
+            [
+              91.7237753,
+              22.4938928
+            ],
+            [
+              91.7237917,
+              22.4938605
+            ],
+            [
+              91.7237702,
+              22.4938512
+            ],
+            [
+              91.7237538,
+              22.4938835
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851198,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851198",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7238296,
+              22.493904
+            ],
+            [
+              91.7238531,
+              22.4939165
+            ],
+            [
+              91.7238752,
+              22.4938812
+            ],
+            [
+              91.7238517,
+              22.4938686
+            ],
+            [
+              91.7238296,
+              22.493904
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851199,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851199",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7238182,
+              22.4939783
+            ],
+            [
+              91.7238837,
+              22.4940143
+            ],
+            [
+              91.7239347,
+              22.493935
+            ],
+            [
+              91.7238691,
+              22.493899
+            ],
+            [
+              91.7238182,
+              22.4939783
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851206,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517851206",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7218945,
+              22.4925504
+            ],
+            [
+              91.7219919,
+              22.4925835
+            ],
+            [
+              91.7220365,
+              22.4924716
+            ],
+            [
+              91.7219003,
+              22.4924253
+            ],
+            [
+              91.7218783,
+              22.4924804
+            ],
+            [
+              91.7219171,
+              22.4924936
+            ],
+            [
+              91.7218945,
+              22.4925504
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856275,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856275",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.724081,
+              22.4950873
+            ],
+            [
+              91.7241107,
+              22.4950967
+            ],
+            [
+              91.7241241,
+              22.4950608
+            ],
+            [
+              91.7240944,
+              22.4950513
+            ],
+            [
+              91.724081,
+              22.4950873
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856282,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856282",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7233649,
+              22.4969954
+            ],
+            [
+              91.7234507,
+              22.4970177
+            ],
+            [
+              91.7234659,
+              22.4969679
+            ],
+            [
+              91.72338,
+              22.4969456
+            ],
+            [
+              91.7233649,
+              22.4969954
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856284,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856284",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7257681,
+              22.492391
+            ],
+            [
+              91.7258151,
+              22.492401
+            ],
+            [
+              91.7258223,
+              22.4923718
+            ],
+            [
+              91.7257754,
+              22.4923619
+            ],
+            [
+              91.7257681,
+              22.492391
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856286,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856286",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7259116,
+              22.4923415
+            ],
+            [
+              91.7259559,
+              22.4923464
+            ],
+            [
+              91.7259604,
+              22.4923118
+            ],
+            [
+              91.7259162,
+              22.4923068
+            ],
+            [
+              91.7259116,
+              22.4923415
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856287,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856287",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7251822,
+              22.4924477
+            ],
+            [
+              91.7252491,
+              22.4924496
+            ],
+            [
+              91.7252518,
+              22.4923678
+            ],
+            [
+              91.7251968,
+              22.4923663
+            ],
+            [
+              91.7251953,
+              22.4924122
+            ],
+            [
+              91.7251834,
+              22.4924119
+            ],
+            [
+              91.7251822,
+              22.4924477
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856288,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856288",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7250842,
+              22.4925744
+            ],
+            [
+              91.7251162,
+              22.4925847
+            ],
+            [
+              91.7251363,
+              22.4925315
+            ],
+            [
+              91.7251043,
+              22.4925211
+            ],
+            [
+              91.7250842,
+              22.4925744
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856289,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856289",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7257521,
+              22.4928507
+            ],
+            [
+              91.7258044,
+              22.4928532
+            ],
+            [
+              91.7258063,
+              22.4928185
+            ],
+            [
+              91.725754,
+              22.492816
+            ],
+            [
+              91.7257521,
+              22.4928507
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856290,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856290",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7257708,
+              22.4927752
+            ],
+            [
+              91.7258157,
+              22.4927828
+            ],
+            [
+              91.7258371,
+              22.492675
+            ],
+            [
+              91.7257923,
+              22.4926674
+            ],
+            [
+              91.7257708,
+              22.4927752
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856291,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856291",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7255455,
+              22.4927727
+            ],
+            [
+              91.7255676,
+              22.4927734
+            ],
+            [
+              91.7255683,
+              22.4927541
+            ],
+            [
+              91.7255462,
+              22.4927534
+            ],
+            [
+              91.7255455,
+              22.4927727
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856292,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856292",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7255683,
+              22.4929647
+            ],
+            [
+              91.7256502,
+              22.4929673
+            ],
+            [
+              91.7256515,
+              22.4929325
+            ],
+            [
+              91.7255696,
+              22.4929299
+            ],
+            [
+              91.7255683,
+              22.4929647
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856293,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856293",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7256153,
+              22.4930378
+            ],
+            [
+              91.7256464,
+              22.4930388
+            ],
+            [
+              91.7256474,
+              22.4930093
+            ],
+            [
+              91.7256164,
+              22.4930084
+            ],
+            [
+              91.7256153,
+              22.4930378
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856294,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856294",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7258084,
+              22.4932634
+            ],
+            [
+              91.7258541,
+              22.4932499
+            ],
+            [
+              91.7258353,
+              22.4931954
+            ],
+            [
+              91.7257896,
+              22.4932088
+            ],
+            [
+              91.7258084,
+              22.4932634
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856295,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856295",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7254174,
+              22.4936029
+            ],
+            [
+              91.7254335,
+              22.4936034
+            ],
+            [
+              91.7254342,
+              22.4935849
+            ],
+            [
+              91.7254181,
+              22.4935844
+            ],
+            [
+              91.7254174,
+              22.4936029
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856296,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856296",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7255455,
+              22.4937887
+            ],
+            [
+              91.7255781,
+              22.4937898
+            ],
+            [
+              91.7255791,
+              22.4937639
+            ],
+            [
+              91.7255465,
+              22.4937629
+            ],
+            [
+              91.7255455,
+              22.4937887
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856297,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856297",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7254704,
+              22.4937639
+            ],
+            [
+              91.7255166,
+              22.4937654
+            ],
+            [
+              91.72552,
+              22.4936723
+            ],
+            [
+              91.7254739,
+              22.4936708
+            ],
+            [
+              91.7254704,
+              22.4937639
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856298,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856298",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7254691,
+              22.4942174
+            ],
+            [
+              91.7255465,
+              22.4942199
+            ],
+            [
+              91.7255482,
+              22.4941728
+            ],
+            [
+              91.7254708,
+              22.4941704
+            ],
+            [
+              91.7254691,
+              22.4942174
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856299,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856299",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.725217,
+              22.4942472
+            ],
+            [
+              91.7252492,
+              22.4942482
+            ],
+            [
+              91.7252505,
+              22.4942125
+            ],
+            [
+              91.7252183,
+              22.4942115
+            ],
+            [
+              91.725217,
+              22.4942472
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856300,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856300",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7252612,
+              22.4942422
+            ],
+            [
+              91.7253586,
+              22.4942453
+            ],
+            [
+              91.7253605,
+              22.4941964
+            ],
+            [
+              91.725263,
+              22.4941933
+            ],
+            [
+              91.7252612,
+              22.4942422
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856302,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856302",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7255449,
+              22.4942782
+            ],
+            [
+              91.7255708,
+              22.494279
+            ],
+            [
+              91.7255717,
+              22.4942559
+            ],
+            [
+              91.7255457,
+              22.494255
+            ],
+            [
+              91.7255449,
+              22.4942782
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856303,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856303",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7254832,
+              22.4942949
+            ],
+            [
+              91.7255373,
+              22.4942983
+            ],
+            [
+              91.725542,
+              22.4942338
+            ],
+            [
+              91.7254879,
+              22.4942305
+            ],
+            [
+              91.7254832,
+              22.4942949
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856304,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856304",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.72528,
+              22.4943531
+            ],
+            [
+              91.7253497,
+              22.4943553
+            ],
+            [
+              91.725353,
+              22.4942649
+            ],
+            [
+              91.7252833,
+              22.4942627
+            ],
+            [
+              91.72528,
+              22.4943531
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856305,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856305",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7252129,
+              22.4943587
+            ],
+            [
+              91.725268,
+              22.4943593
+            ],
+            [
+              91.7252693,
+              22.4942615
+            ],
+            [
+              91.7252143,
+              22.4942608
+            ],
+            [
+              91.7252129,
+              22.4943587
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856306,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856306",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7249165,
+              22.4942459
+            ],
+            [
+              91.7249903,
+              22.494249
+            ],
+            [
+              91.724994,
+              22.4941732
+            ],
+            [
+              91.7249203,
+              22.4941701
+            ],
+            [
+              91.7249165,
+              22.4942459
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856307,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856307",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7248723,
+              22.4943891
+            ],
+            [
+              91.7249293,
+              22.494386
+            ],
+            [
+              91.7249266,
+              22.494342
+            ],
+            [
+              91.7248696,
+              22.494345
+            ],
+            [
+              91.7248723,
+              22.4943891
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856308,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856308",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7252867,
+              22.495625
+            ],
+            [
+              91.7253242,
+              22.4956263
+            ],
+            [
+              91.7253253,
+              22.495599
+            ],
+            [
+              91.7252877,
+              22.4955978
+            ],
+            [
+              91.7252867,
+              22.495625
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856309,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856309",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7254275,
+              22.495858
+            ],
+            [
+              91.7257641,
+              22.4958481
+            ],
+            [
+              91.7257543,
+              22.4955642
+            ],
+            [
+              91.7254177,
+              22.4955741
+            ],
+            [
+              91.7254275,
+              22.495858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856310,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856310",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7248321,
+              22.4961578
+            ],
+            [
+              91.7257199,
+              22.4961107
+            ],
+            [
+              91.7257041,
+              22.4958568
+            ],
+            [
+              91.7254266,
+              22.4958716
+            ],
+            [
+              91.7254301,
+              22.4959285
+            ],
+            [
+              91.7248198,
+              22.4959609
+            ],
+            [
+              91.7248321,
+              22.4961578
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856311,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856311",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7278308,
+              22.4951889
+            ],
+            [
+              91.7278478,
+              22.4952446
+            ],
+            [
+              91.7281804,
+              22.4951579
+            ],
+            [
+              91.7281634,
+              22.4951021
+            ],
+            [
+              91.7278308,
+              22.4951889
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856312,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856312",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7271575,
+              22.4947887
+            ],
+            [
+              91.7271911,
+              22.4947874
+            ],
+            [
+              91.7271896,
+              22.4947548
+            ],
+            [
+              91.7271561,
+              22.494756
+            ],
+            [
+              91.7271575,
+              22.4947887
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856313,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856313",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7265339,
+              22.4948531
+            ],
+            [
+              91.7265517,
+              22.4949236
+            ],
+            [
+              91.7270425,
+              22.4948183
+            ],
+            [
+              91.7270248,
+              22.4947478
+            ],
+            [
+              91.7265339,
+              22.4948531
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856314,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856314",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7263944,
+              22.4949175
+            ],
+            [
+              91.7264575,
+              22.4949181
+            ],
+            [
+              91.7264589,
+              22.4947954
+            ],
+            [
+              91.7263958,
+              22.4947949
+            ],
+            [
+              91.7263944,
+              22.4949175
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856315,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856315",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.725001,
+              22.4955804
+            ],
+            [
+              91.7255964,
+              22.4955316
+            ],
+            [
+              91.7255863,
+              22.4952977
+            ],
+            [
+              91.7252001,
+              22.495314
+            ],
+            [
+              91.7251874,
+              22.4950582
+            ],
+            [
+              91.7249756,
+              22.4950671
+            ],
+            [
+              91.725001,
+              22.4955804
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856316,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856316",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7252049,
+              22.4950328
+            ],
+            [
+              91.7253527,
+              22.4950265
+            ],
+            [
+              91.7253511,
+              22.4949943
+            ],
+            [
+              91.7252033,
+              22.4950006
+            ],
+            [
+              91.7252049,
+              22.4950328
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856317,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856317",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7249916,
+              22.4950588
+            ],
+            [
+              91.7251942,
+              22.4950502
+            ],
+            [
+              91.7251915,
+              22.4949956
+            ],
+            [
+              91.7249889,
+              22.4950041
+            ],
+            [
+              91.7249916,
+              22.4950588
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856318,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856318",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7252076,
+              22.4952979
+            ],
+            [
+              91.7253786,
+              22.4952907
+            ],
+            [
+              91.7253672,
+              22.49506
+            ],
+            [
+              91.7251962,
+              22.4950672
+            ],
+            [
+              91.7252076,
+              22.4952979
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856319,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856319",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7256059,
+              22.4955333
+            ],
+            [
+              91.725733,
+              22.495528
+            ],
+            [
+              91.7257199,
+              22.495262
+            ],
+            [
+              91.7255927,
+              22.4952673
+            ],
+            [
+              91.7256059,
+              22.4955333
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856320,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856320",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7257373,
+              22.4955234
+            ],
+            [
+              91.7258291,
+              22.4955195
+            ],
+            [
+              91.7258151,
+              22.4952372
+            ],
+            [
+              91.7257233,
+              22.4952411
+            ],
+            [
+              91.7257373,
+              22.4955234
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856321,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856321",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7258352,
+              22.4955147
+            ],
+            [
+              91.7259867,
+              22.4955084
+            ],
+            [
+              91.7259646,
+              22.4950622
+            ],
+            [
+              91.7258131,
+              22.4950686
+            ],
+            [
+              91.7258352,
+              22.4955147
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856322,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856322",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7259908,
+              22.4955123
+            ],
+            [
+              91.7261688,
+              22.4955048
+            ],
+            [
+              91.7261463,
+              22.4950501
+            ],
+            [
+              91.7259683,
+              22.4950576
+            ],
+            [
+              91.7259908,
+              22.4955123
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856323,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856323",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7261799,
+              22.4954999
+            ],
+            [
+              91.7263518,
+              22.4954926
+            ],
+            [
+              91.7263301,
+              22.4950526
+            ],
+            [
+              91.7261581,
+              22.4950598
+            ],
+            [
+              91.7261799,
+              22.4954999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856324,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856324",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7257207,
+              22.4960181
+            ],
+            [
+              91.7259863,
+              22.4960069
+            ],
+            [
+              91.7259793,
+              22.495865
+            ],
+            [
+              91.7259439,
+              22.4958665
+            ],
+            [
+              91.7259281,
+              22.4955475
+            ],
+            [
+              91.7257641,
+              22.4955544
+            ],
+            [
+              91.7257792,
+              22.4958592
+            ],
+            [
+              91.725713,
+              22.495862
+            ],
+            [
+              91.7257207,
+              22.4960181
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856325,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517856325",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7259921,
+              22.4960079
+            ],
+            [
+              91.7261344,
+              22.4960042
+            ],
+            [
+              91.7261302,
+              22.4958672
+            ],
+            [
+              91.7259879,
+              22.4958709
+            ],
+            [
+              91.7259921,
+              22.4960079
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871372,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871372",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7267123,
+              22.4910392
+            ],
+            [
+              91.7267444,
+              22.4910506
+            ],
+            [
+              91.7267685,
+              22.4909923
+            ],
+            [
+              91.7267364,
+              22.490981
+            ],
+            [
+              91.7267123,
+              22.4910392
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871373,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871373",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7261839,
+              22.4922634
+            ],
+            [
+              91.7262121,
+              22.4922659
+            ],
+            [
+              91.7262143,
+              22.4922437
+            ],
+            [
+              91.7261862,
+              22.4922412
+            ],
+            [
+              91.7261839,
+              22.4922634
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871374,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871374",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7256837,
+              22.4922002
+            ],
+            [
+              91.7257494,
+              22.4922039
+            ],
+            [
+              91.7257517,
+              22.4921681
+            ],
+            [
+              91.725686,
+              22.4921644
+            ],
+            [
+              91.7256837,
+              22.4922002
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871375,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871375",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7260618,
+              22.4922424
+            ],
+            [
+              91.7261195,
+              22.4922424
+            ],
+            [
+              91.7261195,
+              22.492173
+            ],
+            [
+              91.7260618,
+              22.492173
+            ],
+            [
+              91.7260618,
+              22.4922424
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871376,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871376",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7251995,
+              22.4922597
+            ],
+            [
+              91.7252642,
+              22.4922689
+            ],
+            [
+              91.7252776,
+              22.4921884
+            ],
+            [
+              91.7252129,
+              22.4921792
+            ],
+            [
+              91.7251995,
+              22.4922597
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871377,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871377",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7258607,
+              22.491883
+            ],
+            [
+              91.7258945,
+              22.4918931
+            ],
+            [
+              91.725924,
+              22.4918089
+            ],
+            [
+              91.7258902,
+              22.4917988
+            ],
+            [
+              91.7258607,
+              22.491883
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871378,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871378",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7259559,
+              22.4917343
+            ],
+            [
+              91.7260256,
+              22.4917368
+            ],
+            [
+              91.7260269,
+              22.4917072
+            ],
+            [
+              91.7259571,
+              22.4917047
+            ],
+            [
+              91.7259559,
+              22.4917343
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871379,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871379",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7252344,
+              22.4914828
+            ],
+            [
+              91.7252867,
+              22.4915039
+            ],
+            [
+              91.7253076,
+              22.4914596
+            ],
+            [
+              91.7252553,
+              22.4914385
+            ],
+            [
+              91.7252344,
+              22.4914828
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871380,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871380",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7262214,
+              22.491432
+            ],
+            [
+              91.7262724,
+              22.4914332
+            ],
+            [
+              91.7262732,
+              22.491406
+            ],
+            [
+              91.7262222,
+              22.4914047
+            ],
+            [
+              91.7262214,
+              22.491432
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517871381,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517871381",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.726436,
+              22.4913923
+            ],
+            [
+              91.7265071,
+              22.4914035
+            ],
+            [
+              91.7265144,
+              22.4913635
+            ],
+            [
+              91.7264434,
+              22.4913524
+            ],
+            [
+              91.726436,
+              22.4913923
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942849,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942849",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7228818,
+              22.4908592
+            ],
+            [
+              91.7228794,
+              22.4909229
+            ],
+            [
+              91.7229713,
+              22.4909258
+            ],
+            [
+              91.7229717,
+              22.4909135
+            ],
+            [
+              91.7230226,
+              22.4909152
+            ],
+            [
+              91.7230238,
+              22.4908838
+            ],
+            [
+              91.7229675,
+              22.490882
+            ],
+            [
+              91.7229687,
+              22.4908524
+            ],
+            [
+              91.7229283,
+              22.4908511
+            ],
+            [
+              91.722928,
+              22.4908606
+            ],
+            [
+              91.7228818,
+              22.4908592
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942851,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942851",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7228244,
+              22.4910218
+            ],
+            [
+              91.7228915,
+              22.491028
+            ],
+            [
+              91.7228959,
+              22.4909876
+            ],
+            [
+              91.7228288,
+              22.4909814
+            ],
+            [
+              91.7228244,
+              22.4910218
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942852,
+        "name": "Female Academic Zone, IIUC",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942852",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7219923,
+              22.4922383
+            ],
+            [
+              91.7220313,
+              22.4922491
+            ],
+            [
+              91.7219738,
+              22.4924258
+            ],
+            [
+              91.7220749,
+              22.4924539
+            ],
+            [
+              91.722212,
+              22.4920319
+            ],
+            [
+              91.722072,
+              22.4919931
+            ],
+            [
+              91.7219923,
+              22.4922383
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942853,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942853",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7222115,
+              22.4917219
+            ],
+            [
+              91.7222447,
+              22.4917329
+            ],
+            [
+              91.722296,
+              22.4916005
+            ],
+            [
+              91.7222629,
+              22.4915895
+            ],
+            [
+              91.7222115,
+              22.4917219
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942854,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942854",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.722233,
+              22.4917653
+            ],
+            [
+              91.7222754,
+              22.4917793
+            ],
+            [
+              91.7223001,
+              22.4917157
+            ],
+            [
+              91.7222577,
+              22.4917017
+            ],
+            [
+              91.722233,
+              22.4917653
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942855,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942855",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7222853,
+              22.4915807
+            ],
+            [
+              91.7223193,
+              22.4915919
+            ],
+            [
+              91.7223564,
+              22.4914964
+            ],
+            [
+              91.7223224,
+              22.4914852
+            ],
+            [
+              91.7222853,
+              22.4915807
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942856,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942856",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.722526,
+              22.491222
+            ],
+            [
+              91.7225528,
+              22.4912309
+            ],
+            [
+              91.7225461,
+              22.491248
+            ],
+            [
+              91.7225759,
+              22.4912579
+            ],
+            [
+              91.7225971,
+              22.4912034
+            ],
+            [
+              91.7225699,
+              22.4911944
+            ],
+            [
+              91.722571,
+              22.4911914
+            ],
+            [
+              91.7225629,
+              22.4911887
+            ],
+            [
+              91.722571,
+              22.4911681
+            ],
+            [
+              91.7225497,
+              22.491161
+            ],
+            [
+              91.722526,
+              22.491222
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942857,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942857",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7225602,
+              22.4911358
+            ],
+            [
+              91.7225829,
+              22.4911433
+            ],
+            [
+              91.7226005,
+              22.491098
+            ],
+            [
+              91.7225778,
+              22.4910905
+            ],
+            [
+              91.7225602,
+              22.4911358
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942858,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942858",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7224891,
+              22.491349
+            ],
+            [
+              91.7225295,
+              22.4913623
+            ],
+            [
+              91.7225549,
+              22.4912969
+            ],
+            [
+              91.7225145,
+              22.4912836
+            ],
+            [
+              91.7224891,
+              22.491349
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942860,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942860",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7225728,
+              22.4911861
+            ],
+            [
+              91.7226248,
+              22.4912033
+            ],
+            [
+              91.7226618,
+              22.4911078
+            ],
+            [
+              91.7226099,
+              22.4910906
+            ],
+            [
+              91.7225728,
+              22.4911861
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942861,
+        "name": "IIUC Staffs Dormitory, IIUC Rd, Kumira, Chattogram",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942861",
+        "description": "Building: yes; Tourism: hostel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.722587,
+              22.4910342
+            ],
+            [
+              91.7226328,
+              22.4910494
+            ],
+            [
+              91.7226903,
+              22.490901
+            ],
+            [
+              91.7226446,
+              22.4908859
+            ],
+            [
+              91.722587,
+              22.4910342
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942862,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942862",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7226394,
+              22.4910603
+            ],
+            [
+              91.7226893,
+              22.4910768
+            ],
+            [
+              91.722752,
+              22.4909153
+            ],
+            [
+              91.722702,
+              22.4908987
+            ],
+            [
+              91.7226394,
+              22.4910603
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942863,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942863",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7227614,
+              22.490862
+            ],
+            [
+              91.7228035,
+              22.4908755
+            ],
+            [
+              91.7228433,
+              22.4907691
+            ],
+            [
+              91.7228013,
+              22.4907557
+            ],
+            [
+              91.7227614,
+              22.490862
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942868,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942868",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7229585,
+              22.4903763
+            ],
+            [
+              91.722999,
+              22.4903897
+            ],
+            [
+              91.7230162,
+              22.4903453
+            ],
+            [
+              91.7229758,
+              22.4903319
+            ],
+            [
+              91.7229585,
+              22.4903763
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517942869,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/517942869",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.723033,
+              22.4902703
+            ],
+            [
+              91.7230721,
+              22.4902833
+            ],
+            [
+              91.7230935,
+              22.490228
+            ],
+            [
+              91.7230544,
+              22.490215
+            ],
+            [
+              91.723033,
+              22.4902703
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591394,
+        "name": "IIUC Medical Center",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/652591394",
+        "description": "Building: yes; Amenity: doctors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7206424,
+              22.4968413
+            ],
+            [
+              91.7207576,
+              22.4968493
+            ],
+            [
+              91.7207662,
+              22.4967433
+            ],
+            [
+              91.720651,
+              22.4967353
+            ],
+            [
+              91.7206424,
+              22.4968413
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591398,
+        "name": "IIUC CSE Dpt Main Building",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/652591398",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7202127,
+              22.4969938
+            ],
+            [
+              91.7203174,
+              22.4970149
+            ],
+            [
+              91.7204082,
+              22.4966292
+            ],
+            [
+              91.7203036,
+              22.4966081
+            ],
+            [
+              91.7202127,
+              22.4969938
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591401,
+        "name": "IIUC Sports Center",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/652591401",
+        "description": "Building: yes; Leisure: sports_centre"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.72044,
+              22.4965491
+            ],
+            [
+              91.7207349,
+              22.4965496
+            ],
+            [
+              91.7207351,
+              22.4964517
+            ],
+            [
+              91.7204402,
+              22.4964511
+            ],
+            [
+              91.72044,
+              22.4965491
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591402,
+        "name": "Faculty of Shariah & Islamic Studies, IIUC, Sonaichhari, Chittagong",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/652591402",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7208522,
+              22.4969458
+            ],
+            [
+              91.7211754,
+              22.4969664
+            ],
+            [
+              91.7211854,
+              22.4968328
+            ],
+            [
+              91.7208622,
+              22.4968121
+            ],
+            [
+              91.7208522,
+              22.4969458
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591403,
+        "name": "IIUC Academic Building 2 (Faculty of SHIS)",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/652591403",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7208678,
+              22.4964829
+            ],
+            [
+              91.721106,
+              22.4966842
+            ],
+            [
+              91.7212041,
+              22.4966126
+            ],
+            [
+              91.7209699,
+              22.4963887
+            ],
+            [
+              91.7208678,
+              22.4964829
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591404,
+        "name": "Faculty Of Law, IIUC",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/652591404",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7212956,
+              22.4965811
+            ],
+            [
+              91.7214321,
+              22.4965606
+            ],
+            [
+              91.721408,
+              22.4963853
+            ],
+            [
+              91.7213817,
+              22.4962505
+            ],
+            [
+              91.7212431,
+              22.4962735
+            ],
+            [
+              91.7212956,
+              22.4965811
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652665641,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/652665641",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7259179,
+              22.4903647
+            ],
+            [
+              91.7259777,
+              22.4904152
+            ],
+            [
+              91.7260271,
+              22.4903654
+            ],
+            [
+              91.7259673,
+              22.4903149
+            ],
+            [
+              91.7259179,
+              22.4903647
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179148,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/721179148",
+        "description": "Building: yes; Amenity: toilets; Access: yes; Wheelchair: no"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7209008,
+              22.4959883
+            ],
+            [
+              91.7209906,
+              22.4959944
+            ],
+            [
+              91.7209857,
+              22.4960559
+            ],
+            [
+              91.7209566,
+              22.4960539
+            ],
+            [
+              91.7209525,
+              22.4961062
+            ],
+            [
+              91.7208918,
+              22.4961021
+            ],
+            [
+              91.7209008,
+              22.4959883
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179152,
+        "name": "IIUC Service Center",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/721179152",
+        "description": "Building: yes; Shop: stationery"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7217758,
+              22.4977231
+            ],
+            [
+              91.7218641,
+              22.4977261
+            ],
+            [
+              91.7218631,
+              22.4976021
+            ],
+            [
+              91.7218312,
+              22.4976025
+            ],
+            [
+              91.7217726,
+              22.4976031
+            ],
+            [
+              91.7217758,
+              22.4977231
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 768020363,
+        "name": "Department of ALL",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/768020363",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.721218,
+              22.4985531
+            ],
+            [
+              91.7208371,
+              22.4981368
+            ],
+            [
+              91.7209203,
+              22.4980699
+            ],
+            [
+              91.721328,
+              22.4984763
+            ],
+            [
+              91.721218,
+              22.4985531
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1193496344,
+        "name": "Istishon",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1193496344",
+        "description": "Building: yes; Amenity: cafe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7189952,
+              22.498727
+            ],
+            [
+              91.7190944,
+              22.4987691
+            ],
+            [
+              91.7191078,
+              22.4987171
+            ],
+            [
+              91.7191212,
+              22.4986477
+            ],
+            [
+              91.7190461,
+              22.498618
+            ],
+            [
+              91.7189952,
+              22.498727
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225483837,
+        "name": "IIUC Post Office",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1225483837",
+        "description": "Building: yes; Amenity: post_office"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7209487,
+              22.4949074
+            ],
+            [
+              91.7209006,
+              22.4947853
+            ],
+            [
+              91.7210108,
+              22.4947482
+            ],
+            [
+              91.7210589,
+              22.4948704
+            ],
+            [
+              91.7209487,
+              22.4949074
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225484504,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1225484504",
+        "description": "Building: yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7208256,
+              22.4946929
+            ],
+            [
+              91.7209309,
+              22.4947369
+            ],
+            [
+              91.7210022,
+              22.4945912
+            ],
+            [
+              91.7208968,
+              22.4945473
+            ],
+            [
+              91.7208256,
+              22.4946929
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225582331,
+        "name": "IIUC Academic Building 5 (CIVIL, CCE, ELL)",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1225582331",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7194329,
+              22.4989695
+            ],
+            [
+              91.7199163,
+              22.4988798
+            ],
+            [
+              91.7198895,
+              22.4986766
+            ],
+            [
+              91.7194079,
+              22.4987596
+            ],
+            [
+              91.7194329,
+              22.4989695
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225583148,
+        "name": "IIUC Faculty of Science & Engineering Building (EEE, ETE)",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1225583148",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7192571,
+              22.4982996
+            ],
+            [
+              91.7193008,
+              22.4983015
+            ],
+            [
+              91.7192977,
+              22.4983827
+            ],
+            [
+              91.7195064,
+              22.4983869
+            ],
+            [
+              91.7196397,
+              22.4983875
+            ],
+            [
+              91.7196705,
+              22.4983876
+            ],
+            [
+              91.71986,
+              22.4983798
+            ],
+            [
+              91.7198607,
+              22.4983606
+            ],
+            [
+              91.7199516,
+              22.4983613
+            ],
+            [
+              91.7199524,
+              22.498283
+            ],
+            [
+              91.7199824,
+              22.4982852
+            ],
+            [
+              91.7199917,
+              22.498177
+            ],
+            [
+              91.7199416,
+              22.4981834
+            ],
+            [
+              91.7199355,
+              22.4981571
+            ],
+            [
+              91.7198584,
+              22.4981549
+            ],
+            [
+              91.7198476,
+              22.498246
+            ],
+            [
+              91.719625,
+              22.4982588
+            ],
+            [
+              91.7196273,
+              22.4982225
+            ],
+            [
+              91.7195018,
+              22.4982261
+            ],
+            [
+              91.7193115,
+              22.4982254
+            ],
+            [
+              91.7192522,
+              22.4982275
+            ],
+            [
+              91.7192571,
+              22.4982996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225587338,
+        "name": "IIUC Administrative Building 1",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1225587338",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7207446,
+              22.4972078
+            ],
+            [
+              91.720886,
+              22.4972496
+            ],
+            [
+              91.7209474,
+              22.4972116
+            ],
+            [
+              91.7209662,
+              22.4971932
+            ],
+            [
+              91.7210216,
+              22.4971111
+            ],
+            [
+              91.7207574,
+              22.4970394
+            ],
+            [
+              91.7206934,
+              22.497193
+            ],
+            [
+              91.7207446,
+              22.4972078
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225605745,
+        "name": "Female Academic Zone, IIUC",
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1225605745",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7219019,
+              22.4928136
+            ],
+            [
+              91.7221284,
+              22.4928235
+            ],
+            [
+              91.7221243,
+              22.4929032
+            ],
+            [
+              91.7223433,
+              22.4929128
+            ],
+            [
+              91.7223409,
+              22.4929606
+            ],
+            [
+              91.7225437,
+              22.4929695
+            ],
+            [
+              91.7225582,
+              22.492688
+            ],
+            [
+              91.7219098,
+              22.4926595
+            ],
+            [
+              91.7219019,
+              22.4928136
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225605746,
+        "name": null,
+        "kind": "building",
+        "category": "Buildings",
+        "source": "OpenStreetMap way/1225605746",
+        "description": "Building: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7221052,
+              22.4930362
+            ],
+            [
+              91.7221036,
+              22.492928
+            ],
+            [
+              91.7223254,
+              22.4929308
+            ],
+            [
+              91.7223366,
+              22.4929624
+            ],
+            [
+              91.7225016,
+              22.4929723
+            ],
+            [
+              91.7224908,
+              22.4930398
+            ],
+            [
+              91.7221052,
+              22.4930362
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 471800057,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/471800057",
+        "description": "Highway: service; Footway: sidewalk"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7213312,
+            22.4967045
+          ],
+          [
+            91.7213272,
+            22.4967584
+          ],
+          [
+            91.7213098,
+            22.4969781
+          ],
+          [
+            91.7212889,
+            22.497216
+          ],
+          [
+            91.721089,
+            22.4972308
+          ],
+          [
+            91.7209683,
+            22.4972569
+          ],
+          [
+            91.7208382,
+            22.4973039
+          ],
+          [
+            91.7206666,
+            22.4973733
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517844239,
+        "name": "FSE Road",
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517844239",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7197291,
+            22.4980994
+          ],
+          [
+            91.7200762,
+            22.4980905
+          ],
+          [
+            91.7200917,
+            22.4978314
+          ],
+          [
+            91.7201918,
+            22.4977574
+          ],
+          [
+            91.7202294,
+            22.4977054
+          ],
+          [
+            91.7203259,
+            22.497527
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517844240,
+        "name": "IIUC Engineer Bridge",
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517844240",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7203259,
+            22.497527
+          ],
+          [
+            91.7206666,
+            22.4973733
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517844242,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517844242",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7216698,
+            22.4966124
+          ],
+          [
+            91.7216886,
+            22.4966493
+          ],
+          [
+            91.721693,
+            22.49669
+          ],
+          [
+            91.721683,
+            22.4967283
+          ],
+          [
+            91.7216602,
+            22.4967616
+          ],
+          [
+            91.721627,
+            22.4967864
+          ],
+          [
+            91.7215869,
+            22.4967998
+          ],
+          [
+            91.7215442,
+            22.4968007
+          ],
+          [
+            91.7215041,
+            22.4967889
+          ],
+          [
+            91.7214701,
+            22.496766
+          ],
+          [
+            91.7214457,
+            22.4967342
+          ],
+          [
+            91.7214336,
+            22.496697
+          ],
+          [
+            91.721435,
+            22.4966581
+          ],
+          [
+            91.7214497,
+            22.4966216
+          ],
+          [
+            91.7214763,
+            22.4965914
+          ],
+          [
+            91.7215118,
+            22.4965706
+          ],
+          [
+            91.7215549,
+            22.4965612
+          ],
+          [
+            91.7215988,
+            22.4965656
+          ],
+          [
+            91.7216386,
+            22.4965833
+          ],
+          [
+            91.7216698,
+            22.4966124
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517844245,
+        "name": "IIUC Road",
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517844245",
+        "description": "Highway: unclassified"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7180505,
+            22.4924551
+          ],
+          [
+            91.7181816,
+            22.492495
+          ],
+          [
+            91.7189513,
+            22.4927293
+          ],
+          [
+            91.7190398,
+            22.4927206
+          ],
+          [
+            91.7210719,
+            22.493569
+          ],
+          [
+            91.7211103,
+            22.4935881
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517852741,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517852741",
+        "description": "Highway: residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7235392,
+            22.4954801
+          ],
+          [
+            91.7239416,
+            22.4949931
+          ],
+          [
+            91.7241159,
+            22.4947106
+          ],
+          [
+            91.7243003,
+            22.4944653
+          ],
+          [
+            91.7250305,
+            22.4944256
+          ],
+          [
+            91.7253927,
+            22.4937194
+          ],
+          [
+            91.7256152,
+            22.4935533
+          ],
+          [
+            91.7257145,
+            22.493153
+          ],
+          [
+            91.725693,
+            22.4929808
+          ],
+          [
+            91.7257172,
+            22.4927603
+          ],
+          [
+            91.7258406,
+            22.49251
+          ],
+          [
+            91.725921,
+            22.4922126
+          ],
+          [
+            91.7259747,
+            22.4920491
+          ],
+          [
+            91.7259425,
+            22.4918805
+          ],
+          [
+            91.7259747,
+            22.4917938
+          ],
+          [
+            91.7260686,
+            22.4917492
+          ],
+          [
+            91.7262509,
+            22.4917467
+          ],
+          [
+            91.7263609,
+            22.491603
+          ],
+          [
+            91.7263797,
+            22.491427
+          ],
+          [
+            91.7263395,
+            22.4913254
+          ],
+          [
+            91.7266104,
+            22.4907691
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517852742,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517852742",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7235392,
+            22.4954801
+          ],
+          [
+            91.7236519,
+            22.4954937
+          ],
+          [
+            91.7237283,
+            22.4954677
+          ],
+          [
+            91.723955,
+            22.4953661
+          ],
+          [
+            91.7240033,
+            22.4953289
+          ],
+          [
+            91.7241481,
+            22.4951009
+          ],
+          [
+            91.724187,
+            22.49506
+          ],
+          [
+            91.7242661,
+            22.4950266
+          ],
+          [
+            91.7249125,
+            22.4949881
+          ],
+          [
+            91.7257842,
+            22.494951
+          ],
+          [
+            91.7259076,
+            22.4949683
+          ],
+          [
+            91.7260283,
+            22.4949981
+          ],
+          [
+            91.7261302,
+            22.4950104
+          ],
+          [
+            91.7262281,
+            22.4950043
+          ],
+          [
+            91.7267901,
+            22.4949262
+          ],
+          [
+            91.7270543,
+            22.4948927
+          ],
+          [
+            91.7273319,
+            22.4948841
+          ],
+          [
+            91.7275961,
+            22.4949039
+          ],
+          [
+            91.7279649,
+            22.4949064
+          ],
+          [
+            91.7282304,
+            22.4948865
+          ],
+          [
+            91.7284396,
+            22.4948432
+          ],
+          [
+            91.7286274,
+            22.4947899
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517852744,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517852744",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7214632,
+            22.49563
+          ],
+          [
+            91.7216174,
+            22.4956411
+          ],
+          [
+            91.7217489,
+            22.4956312
+          ],
+          [
+            91.7218427,
+            22.4955891
+          ],
+          [
+            91.7220325,
+            22.495459
+          ],
+          [
+            91.7220801,
+            22.4954441
+          ],
+          [
+            91.7222685,
+            22.4954224
+          ],
+          [
+            91.722465,
+            22.4954255
+          ],
+          [
+            91.7226286,
+            22.4954404
+          ],
+          [
+            91.722921,
+            22.4954516
+          ],
+          [
+            91.7232066,
+            22.4954801
+          ],
+          [
+            91.7235392,
+            22.4954801
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856280,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/517856280",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7236519,
+            22.4954937
+          ],
+          [
+            91.7236868,
+            22.4956411
+          ],
+          [
+            91.7237283,
+            22.4956721
+          ],
+          [
+            91.7237981,
+            22.4956833
+          ],
+          [
+            91.7242728,
+            22.4956882
+          ],
+          [
+            91.7249434,
+            22.49563
+          ],
+          [
+            91.7249125,
+            22.4949881
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179124,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/721179124",
+        "description": "Highway: footway; Footway: sidewalk"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7212889,
+            22.497216
+          ],
+          [
+            91.7213928,
+            22.4972668
+          ],
+          [
+            91.7214518,
+            22.4973263
+          ],
+          [
+            91.7214746,
+            22.4974068
+          ],
+          [
+            91.7214558,
+            22.4975258
+          ],
+          [
+            91.7214196,
+            22.4976447
+          ],
+          [
+            91.7213963,
+            22.4977086
+          ],
+          [
+            91.7213847,
+            22.4977401
+          ],
+          [
+            91.7213646,
+            22.4978269
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179125,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/721179125",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7213963,
+            22.4977086
+          ],
+          [
+            91.7212734,
+            22.497677
+          ],
+          [
+            91.7210977,
+            22.4976361
+          ],
+          [
+            91.7209234,
+            22.4975766
+          ],
+          [
+            91.7208389,
+            22.4975158
+          ],
+          [
+            91.7207705,
+            22.4974539
+          ],
+          [
+            91.7206666,
+            22.4973733
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179132,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/721179132",
+        "description": "Highway: footway; Footway: sidewalk"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7213963,
+            22.4977086
+          ],
+          [
+            91.7215698,
+            22.4976918
+          ],
+          [
+            91.7216959,
+            22.4976893
+          ],
+          [
+            91.7217428,
+            22.4976807
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179139,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/721179139",
+        "description": "Highway: path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7210508,
+            22.4955764
+          ],
+          [
+            91.7210372,
+            22.495471
+          ],
+          [
+            91.7210351,
+            22.4953884
+          ],
+          [
+            91.7210325,
+            22.4952619
+          ],
+          [
+            91.7210306,
+            22.4951678
+          ],
+          [
+            91.7210562,
+            22.4951324
+          ],
+          [
+            91.7210647,
+            22.4950646
+          ],
+          [
+            91.7210828,
+            22.494978
+          ],
+          [
+            91.7212137,
+            22.4948374
+          ],
+          [
+            91.7212829,
+            22.4948325
+          ],
+          [
+            91.7213398,
+            22.4948469
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179150,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/721179150",
+        "description": "Highway: path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7215442,
+            22.4968007
+          ],
+          [
+            91.7215427,
+            22.4969865
+          ],
+          [
+            91.7213098,
+            22.4969781
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179153,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/721179153",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7211103,
+            22.4935881
+          ],
+          [
+            91.7212229,
+            22.4936285
+          ],
+          [
+            91.72126,
+            22.4936626
+          ],
+          [
+            91.7213198,
+            22.4937175
+          ],
+          [
+            91.7213909,
+            22.4938127
+          ],
+          [
+            91.7214127,
+            22.4939363
+          ],
+          [
+            91.7213504,
+            22.4946439
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179154,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/721179154",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7208269,
+            22.4967006
+          ],
+          [
+            91.7209147,
+            22.4966968
+          ],
+          [
+            91.7213067,
+            22.496704
+          ],
+          [
+            91.7213312,
+            22.4967045
+          ],
+          [
+            91.7213928,
+            22.4966491
+          ],
+          [
+            91.7214438,
+            22.4965915
+          ],
+          [
+            91.7214852,
+            22.4965403
+          ],
+          [
+            91.7214873,
+            22.4965376
+          ],
+          [
+            91.7215014,
+            22.4964986
+          ],
+          [
+            91.7214775,
+            22.4961447
+          ],
+          [
+            91.7214747,
+            22.4961033
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 976303150,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/976303150",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7213504,
+            22.4946439
+          ],
+          [
+            91.7213537,
+            22.494734
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 976303152,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/976303152",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7213537,
+            22.494734
+          ],
+          [
+            91.7213398,
+            22.4948469
+          ],
+          [
+            91.721364,
+            22.4950811
+          ],
+          [
+            91.7214109,
+            22.4953685
+          ],
+          [
+            91.7214632,
+            22.49563
+          ],
+          [
+            91.7214747,
+            22.4961033
+          ],
+          [
+            91.7212614,
+            22.4961141
+          ],
+          [
+            91.7211078,
+            22.4961219
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225581456,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225581456",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7214775,
+            22.4961447
+          ],
+          [
+            91.7215741,
+            22.4961398
+          ],
+          [
+            91.721818,
+            22.4961266
+          ],
+          [
+            91.7220009,
+            22.4961266
+          ],
+          [
+            91.7221016,
+            22.4961229
+          ],
+          [
+            91.7221757,
+            22.4961041
+          ],
+          [
+            91.7222154,
+            22.4960844
+          ],
+          [
+            91.7222703,
+            22.496028
+          ],
+          [
+            91.7222936,
+            22.4959294
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225583146,
+        "name": "Academic Building 5 - Hostel Rd",
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225583146",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7201918,
+            22.4977574
+          ],
+          [
+            91.7202496,
+            22.4977847
+          ],
+          [
+            91.7202943,
+            22.4977947
+          ],
+          [
+            91.7203451,
+            22.4978189
+          ],
+          [
+            91.7203923,
+            22.4978772
+          ],
+          [
+            91.7204054,
+            22.4979826
+          ],
+          [
+            91.7204084,
+            22.498142
+          ],
+          [
+            91.7204323,
+            22.4984344
+          ],
+          [
+            91.7204437,
+            22.4985377
+          ],
+          [
+            91.7204329,
+            22.4985619
+          ],
+          [
+            91.7204129,
+            22.4985775
+          ],
+          [
+            91.7203652,
+            22.4985861
+          ],
+          [
+            91.7203205,
+            22.4986003
+          ],
+          [
+            91.7199492,
+            22.4986373
+          ],
+          [
+            91.7196565,
+            22.4986558
+          ],
+          [
+            91.7195808,
+            22.4986613
+          ],
+          [
+            91.7194717,
+            22.4986729
+          ],
+          [
+            91.7194008,
+            22.4986928
+          ],
+          [
+            91.7193639,
+            22.498727
+          ],
+          [
+            91.7193453,
+            22.4987825
+          ],
+          [
+            91.7193253,
+            22.4989149
+          ],
+          [
+            91.7192745,
+            22.498969
+          ],
+          [
+            91.7191435,
+            22.4991241
+          ],
+          [
+            91.7190218,
+            22.4993034
+          ],
+          [
+            91.7189032,
+            22.4994813
+          ],
+          [
+            91.7188215,
+            22.4996307
+          ],
+          [
+            91.7187954,
+            22.4996606
+          ],
+          [
+            91.7187307,
+            22.4997887
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225588357,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225588357",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7208269,
+            22.4967006
+          ],
+          [
+            91.7208097,
+            22.4968447
+          ],
+          [
+            91.7208146,
+            22.4969385
+          ],
+          [
+            91.7208564,
+            22.4969855
+          ],
+          [
+            91.7209608,
+            22.4970058
+          ],
+          [
+            91.7210109,
+            22.4970569
+          ],
+          [
+            91.7210577,
+            22.4971151
+          ],
+          [
+            91.7210821,
+            22.4971546
+          ],
+          [
+            91.7212889,
+            22.497216
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225588358,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225588358",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7211078,
+            22.4961219
+          ],
+          [
+            91.7210386,
+            22.4961249
+          ],
+          [
+            91.7208946,
+            22.496131
+          ],
+          [
+            91.7206832,
+            22.496161
+          ],
+          [
+            91.7207137,
+            22.4964183
+          ],
+          [
+            91.7207707,
+            22.4964878
+          ],
+          [
+            91.7207757,
+            22.4966587
+          ],
+          [
+            91.7207446,
+            22.496666
+          ],
+          [
+            91.72056,
+            22.4966526
+          ],
+          [
+            91.7205176,
+            22.4966694
+          ],
+          [
+            91.7204869,
+            22.4966912
+          ],
+          [
+            91.7204681,
+            22.4967817
+          ],
+          [
+            91.7204689,
+            22.4968625
+          ],
+          [
+            91.7204842,
+            22.4968988
+          ],
+          [
+            91.7205781,
+            22.4969259
+          ],
+          [
+            91.7206019,
+            22.4968653
+          ],
+          [
+            91.720604,
+            22.4967958
+          ],
+          [
+            91.7206011,
+            22.4966921
+          ],
+          [
+            91.7205794,
+            22.4966643
+          ],
+          [
+            91.72056,
+            22.4966526
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225588359,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225588359",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7207757,
+            22.4966587
+          ],
+          [
+            91.7208042,
+            22.4966735
+          ],
+          [
+            91.7208269,
+            22.4967006
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225588360,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225588360",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7205781,
+            22.4969259
+          ],
+          [
+            91.7205724,
+            22.4970487
+          ],
+          [
+            91.7205653,
+            22.4971942
+          ],
+          [
+            91.7206007,
+            22.4973103
+          ],
+          [
+            91.7206666,
+            22.4973733
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225602583,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225602583",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7214852,
+            22.4965403
+          ],
+          [
+            91.7215118,
+            22.4965706
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225602584,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225602584",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.721693,
+            22.49669
+          ],
+          [
+            91.7217406,
+            22.4967235
+          ],
+          [
+            91.7217605,
+            22.4967429
+          ],
+          [
+            91.7217814,
+            22.4967675
+          ],
+          [
+            91.7217971,
+            22.4969228
+          ],
+          [
+            91.7217969,
+            22.4969512
+          ],
+          [
+            91.7217961,
+            22.4969694
+          ],
+          [
+            91.7217943,
+            22.4969983
+          ],
+          [
+            91.7218047,
+            22.4971112
+          ],
+          [
+            91.7217957,
+            22.4971936
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225602585,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225602585",
+        "description": "Highway: path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7215427,
+            22.4969865
+          ],
+          [
+            91.7217961,
+            22.4969694
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225606570,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1225606570",
+        "description": "Highway: service"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7204681,
+            22.4967817
+          ],
+          [
+            91.7203917,
+            22.4967666
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806240,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806240",
+        "description": "Highway: residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.72126,
+            22.4936626
+          ],
+          [
+            91.7212917,
+            22.4936177
+          ],
+          [
+            91.7213626,
+            22.4936006
+          ],
+          [
+            91.7214457,
+            22.4935963
+          ],
+          [
+            91.7215228,
+            22.4936205
+          ],
+          [
+            91.7215798,
+            22.493639
+          ],
+          [
+            91.7216537,
+            22.4935778
+          ],
+          [
+            91.7216968,
+            22.4935123
+          ],
+          [
+            91.7217708,
+            22.4933999
+          ],
+          [
+            91.7218571,
+            22.4932604
+          ],
+          [
+            91.7219002,
+            22.4931907
+          ],
+          [
+            91.7219156,
+            22.4931337
+          ],
+          [
+            91.7219464,
+            22.4929288
+          ],
+          [
+            91.7219433,
+            22.492896
+          ],
+          [
+            91.7219495,
+            22.4928405
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806241,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806241",
+        "description": "Highway: residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7215798,
+            22.493639
+          ],
+          [
+            91.7215397,
+            22.4937016
+          ],
+          [
+            91.7215104,
+            22.4937486
+          ],
+          [
+            91.7214127,
+            22.4939363
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806242,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806242",
+        "description": "Highway: path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7212917,
+            22.4936177
+          ],
+          [
+            91.721824,
+            22.4923884
+          ],
+          [
+            91.7225911,
+            22.4908623
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806243,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806243",
+        "description": "Highway: path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7210325,
+            22.4952619
+          ],
+          [
+            91.7209573,
+            22.4953765
+          ],
+          [
+            91.7209146,
+            22.4954423
+          ],
+          [
+            91.7208313,
+            22.4954948
+          ],
+          [
+            91.7207561,
+            22.4955869
+          ],
+          [
+            91.7207113,
+            22.495724
+          ],
+          [
+            91.7206991,
+            22.4959681
+          ],
+          [
+            91.7206832,
+            22.496161
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806244,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806244",
+        "description": "Highway: path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7195808,
+            22.4986613
+          ],
+          [
+            91.7196139,
+            22.4985265
+          ],
+          [
+            91.7196397,
+            22.4983875
+          ],
+          [
+            91.7198848,
+            22.4983777
+          ],
+          [
+            91.7200202,
+            22.4983475
+          ],
+          [
+            91.7201183,
+            22.4983237
+          ],
+          [
+            91.7201276,
+            22.4982547
+          ],
+          [
+            91.7201136,
+            22.4982008
+          ],
+          [
+            91.7201416,
+            22.4980994
+          ],
+          [
+            91.7201556,
+            22.4980519
+          ],
+          [
+            91.7201253,
+            22.4980066
+          ],
+          [
+            91.7201043,
+            22.497916
+          ],
+          [
+            91.7200917,
+            22.4978314
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806245,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806245",
+        "description": "Highway: residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7210386,
+            22.4961249
+          ],
+          [
+            91.7210421,
+            22.4961939
+          ],
+          [
+            91.7210811,
+            22.4962748
+          ],
+          [
+            91.7211651,
+            22.4963255
+          ],
+          [
+            91.721212,
+            22.4962789
+          ],
+          [
+            91.7212456,
+            22.4961971
+          ],
+          [
+            91.7212614,
+            22.4961141
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806246,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806246",
+        "description": "Highway: residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7210811,
+            22.4962748
+          ],
+          [
+            91.7208475,
+            22.4963426
+          ],
+          [
+            91.7207137,
+            22.4964183
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1375806247,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1375806247",
+        "description": "Highway: path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7211651,
+            22.4963255
+          ],
+          [
+            91.7211563,
+            22.4963631
+          ],
+          [
+            91.7211439,
+            22.4964105
+          ],
+          [
+            91.7211359,
+            22.496471
+          ],
+          [
+            91.7211678,
+            22.4964873
+          ],
+          [
+            91.7212156,
+            22.4965045
+          ],
+          [
+            91.7212474,
+            22.4965274
+          ],
+          [
+            91.7212651,
+            22.496565
+          ],
+          [
+            91.7212846,
+            22.4966034
+          ],
+          [
+            91.7212828,
+            22.496632
+          ],
+          [
+            91.7213067,
+            22.496704
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1545180946,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1545180946",
+        "description": "Highway: residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7243918,
+            22.4943519
+          ],
+          [
+            91.7242004,
+            22.4942385
+          ],
+          [
+            91.7240636,
+            22.4941951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1545180947,
+        "name": null,
+        "kind": "road",
+        "category": "Roads & Paths",
+        "source": "OpenStreetMap way/1545180947",
+        "description": "Highway: residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            91.7247073,
+            22.4940861
+          ],
+          [
+            91.7245303,
+            22.4941803
+          ],
+          [
+            91.7243918,
+            22.4943519
+          ],
+          [
+            91.7243003,
+            22.4944653
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 276731950,
+        "name": "International Islamic University Chittagong",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/276731950",
+        "description": "Amenity: university; Education: university"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7182711,
+              22.4999369
+            ],
+            [
+              91.7185829,
+              22.5000375
+            ],
+            [
+              91.718738,
+              22.4998033
+            ],
+            [
+              91.718879,
+              22.4997005
+            ],
+            [
+              91.7190598,
+              22.4995688
+            ],
+            [
+              91.7193024,
+              22.4989883
+            ],
+            [
+              91.7205393,
+              22.4987992
+            ],
+            [
+              91.7209821,
+              22.4984133
+            ],
+            [
+              91.7216497,
+              22.4988934
+            ],
+            [
+              91.7220654,
+              22.4980533
+            ],
+            [
+              91.722571,
+              22.4981388
+            ],
+            [
+              91.722915,
+              22.4983798
+            ],
+            [
+              91.7230337,
+              22.4985514
+            ],
+            [
+              91.7235085,
+              22.497134
+            ],
+            [
+              91.724236,
+              22.497243
+            ],
+            [
+              91.7248455,
+              22.4969456
+            ],
+            [
+              91.7263972,
+              22.4958255
+            ],
+            [
+              91.7276686,
+              22.4957215
+            ],
+            [
+              91.7287039,
+              22.4945865
+            ],
+            [
+              91.7304742,
+              22.4929013
+            ],
+            [
+              91.7273092,
+              22.4901059
+            ],
+            [
+              91.7258393,
+              22.4894715
+            ],
+            [
+              91.7249971,
+              22.4910278
+            ],
+            [
+              91.7230579,
+              22.4901406
+            ],
+            [
+              91.7219244,
+              22.4922301
+            ],
+            [
+              91.7209148,
+              22.4943882
+            ],
+            [
+              91.7182711,
+              22.4999369
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517851155,
+        "name": "IIUC Shaheeed Minar",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/517851155",
+        "description": "Historic: memorial; Memorial: memorial"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7217274,
+              22.4973015
+            ],
+            [
+              91.7218293,
+              22.4973015
+            ],
+            [
+              91.7218293,
+              22.4972513
+            ],
+            [
+              91.7217274,
+              22.4972513
+            ],
+            [
+              91.7217274,
+              22.4973015
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 517856283,
+        "name": null,
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/517856283",
+        "description": "Natural: water"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7239201,
+              22.4960884
+            ],
+            [
+              91.7243218,
+              22.4961061
+            ],
+            [
+              91.7243352,
+              22.4958459
+            ],
+            [
+              91.7239335,
+              22.4958282
+            ],
+            [
+              91.7239201,
+              22.4960884
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652586162,
+        "name": null,
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/652586162",
+        "description": "Natural: water; Water: pond"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.725937,
+              22.4924892
+            ],
+            [
+              91.7259138,
+              22.4924638
+            ],
+            [
+              91.7259427,
+              22.492409
+            ],
+            [
+              91.7259845,
+              22.4923508
+            ],
+            [
+              91.7260115,
+              22.492321
+            ],
+            [
+              91.7260399,
+              22.4922916
+            ],
+            [
+              91.7261281,
+              22.4922851
+            ],
+            [
+              91.7261822,
+              22.4923048
+            ],
+            [
+              91.7262073,
+              22.4923486
+            ],
+            [
+              91.7262163,
+              22.4924143
+            ],
+            [
+              91.7262049,
+              22.4924682
+            ],
+            [
+              91.7261708,
+              22.4925238
+            ],
+            [
+              91.7261191,
+              22.4925365
+            ],
+            [
+              91.7260404,
+              22.4925186
+            ],
+            [
+              91.725937,
+              22.4924892
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591395,
+        "name": "IIUC Central Field",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/652591395",
+        "description": "Leisure: pitch; Sport: soccer;cricket; Access: private"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7222118,
+              22.4966494
+            ],
+            [
+              91.7221499,
+              22.4966551
+            ],
+            [
+              91.7219993,
+              22.4966688
+            ],
+            [
+              91.7218943,
+              22.4966667
+            ],
+            [
+              91.7217883,
+              22.496653
+            ],
+            [
+              91.7217022,
+              22.496571
+            ],
+            [
+              91.7216078,
+              22.4965056
+            ],
+            [
+              91.7215903,
+              22.4964127
+            ],
+            [
+              91.7215911,
+              22.4963064
+            ],
+            [
+              91.7216028,
+              22.4961346
+            ],
+            [
+              91.7217428,
+              22.4961378
+            ],
+            [
+              91.7219313,
+              22.4961392
+            ],
+            [
+              91.7219911,
+              22.4961389
+            ],
+            [
+              91.7220362,
+              22.4961369
+            ],
+            [
+              91.7222383,
+              22.4961442
+            ],
+            [
+              91.7222543,
+              22.4962135
+            ],
+            [
+              91.7222604,
+              22.4963077
+            ],
+            [
+              91.7222572,
+              22.4964083
+            ],
+            [
+              91.7222504,
+              22.496506
+            ],
+            [
+              91.7222344,
+              22.4965896
+            ],
+            [
+              91.7222118,
+              22.4966494
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591396,
+        "name": null,
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/652591396",
+        "description": "Natural: water; Water: pond"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7222077,
+              22.4957239
+            ],
+            [
+              91.7221051,
+              22.495702
+            ],
+            [
+              91.7220972,
+              22.4956374
+            ],
+            [
+              91.7220949,
+              22.4955801
+            ],
+            [
+              91.7221536,
+              22.4955353
+            ],
+            [
+              91.7222528,
+              22.495527
+            ],
+            [
+              91.7223227,
+              22.4955395
+            ],
+            [
+              91.722343,
+              22.4955979
+            ],
+            [
+              91.7223419,
+              22.4956458
+            ],
+            [
+              91.7223227,
+              22.4957093
+            ],
+            [
+              91.7223002,
+              22.4957229
+            ],
+            [
+              91.7222438,
+              22.495725
+            ],
+            [
+              91.7222077,
+              22.4957239
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 652591397,
+        "name": "IIUC Water Treatment Plant",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/652591397",
+        "description": "Man made: storage_tank"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7205787,
+              22.4960969
+            ],
+            [
+              91.7206539,
+              22.4961018
+            ],
+            [
+              91.7206629,
+              22.495983
+            ],
+            [
+              91.7205877,
+              22.4959782
+            ],
+            [
+              91.7205787,
+              22.4960969
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179123,
+        "name": "iiuc pond",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/721179123",
+        "description": "Natural: water; Water: pond"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7216885,
+              22.49767
+            ],
+            [
+              91.7217032,
+              22.4976338
+            ],
+            [
+              91.7217073,
+              22.497556
+            ],
+            [
+              91.7216952,
+              22.4975141
+            ],
+            [
+              91.7216613,
+              22.4974922
+            ],
+            [
+              91.7214908,
+              22.4974888
+            ],
+            [
+              91.7214677,
+              22.4975179
+            ],
+            [
+              91.7214618,
+              22.4976621
+            ],
+            [
+              91.7216885,
+              22.49767
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179145,
+        "name": null,
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/721179145",
+        "description": "Amenity: parking; Operator: International Islamic University Chittagong; Operator type: private"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7213804,
+              22.4946385
+            ],
+            [
+              91.7216191,
+              22.4947488
+            ],
+            [
+              91.7216982,
+              22.4947686
+            ],
+            [
+              91.7217452,
+              22.494677
+            ],
+            [
+              91.7217948,
+              22.4945977
+            ],
+            [
+              91.721839,
+              22.4944614
+            ],
+            [
+              91.721611,
+              22.4943721
+            ],
+            [
+              91.7214461,
+              22.4943771
+            ],
+            [
+              91.7213965,
+              22.4943759
+            ],
+            [
+              91.7213804,
+              22.4946385
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179146,
+        "name": null,
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/721179146",
+        "description": "Amenity: parking; Operator: International Islamic University Chittagong; Operator type: private"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7209593,
+              22.4944626
+            ],
+            [
+              91.7211591,
+              22.4945555
+            ],
+            [
+              91.7212556,
+              22.4945642
+            ],
+            [
+              91.7213066,
+              22.4945729
+            ],
+            [
+              91.7213562,
+              22.4940141
+            ],
+            [
+              91.7211738,
+              22.4939732
+            ],
+            [
+              91.7209593,
+              22.4944626
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 721179149,
+        "name": "IIUC Basketball ground",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/721179149",
+        "description": "Leisure: pitch; Sport: basketball; Surface: asphalt; Access: permissive"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7205174,
+              22.4958914
+            ],
+            [
+              91.7207214,
+              22.4959052
+            ],
+            [
+              91.7207437,
+              22.4956236
+            ],
+            [
+              91.7205397,
+              22.4956098
+            ],
+            [
+              91.7205174,
+              22.4958914
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1225583147,
+        "name": "IIUC Substation",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/1225583147",
+        "description": "Power: substation"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7200041,
+              22.4983015
+            ],
+            [
+              91.7200027,
+              22.4982383
+            ],
+            [
+              91.7200269,
+              22.4982271
+            ],
+            [
+              91.7200309,
+              22.4981825
+            ],
+            [
+              91.7200859,
+              22.4981875
+            ],
+            [
+              91.7200832,
+              22.4983052
+            ],
+            [
+              91.7199947,
+              22.4983052
+            ],
+            [
+              91.7200041,
+              22.4983015
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1464534156,
+        "name": "Female Academic Zone",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/1464534156",
+        "description": "Landuse: education"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7213626,
+              22.4936006
+            ],
+            [
+              91.7220606,
+              22.4937508
+            ],
+            [
+              91.7226645,
+              22.4927601
+            ],
+            [
+              91.7230712,
+              22.4920655
+            ],
+            [
+              91.7231451,
+              22.4915417
+            ],
+            [
+              91.7223236,
+              22.4914689
+            ],
+            [
+              91.7222455,
+              22.4917923
+            ],
+            [
+              91.7213626,
+              22.4936006
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1464534157,
+        "name": "Meow",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/1464534157",
+        "description": "Tourism: zoo"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7188021,
+              22.4996832
+            ],
+            [
+              91.718879,
+              22.4997005
+            ],
+            [
+              91.7189762,
+              22.4996789
+            ],
+            [
+              91.719118,
+              22.4996163
+            ],
+            [
+              91.7192165,
+              22.4994185
+            ],
+            [
+              91.7193105,
+              22.499205
+            ],
+            [
+              91.7192735,
+              22.4991353
+            ],
+            [
+              91.7192027,
+              22.4990926
+            ],
+            [
+              91.7191457,
+              22.4990598
+            ],
+            [
+              91.7189778,
+              22.4993288
+            ],
+            [
+              91.7188746,
+              22.4995039
+            ],
+            [
+              91.7187837,
+              22.4996192
+            ],
+            [
+              91.7188021,
+              22.4996832
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "way",
+        "osmId": 1464534158,
+        "name": "Male Academic Zone",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap way/1464534158",
+        "description": "Landuse: education"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              91.7182711,
+              22.4999369
+            ],
+            [
+              91.7185829,
+              22.5000375
+            ],
+            [
+              91.719118,
+              22.4996163
+            ],
+            [
+              91.7193024,
+              22.4989883
+            ],
+            [
+              91.7205393,
+              22.4987992
+            ],
+            [
+              91.7215968,
+              22.4989804
+            ],
+            [
+              91.7218045,
+              22.4978219
+            ],
+            [
+              91.7218952,
+              22.4974048
+            ],
+            [
+              91.7222127,
+              22.4971287
+            ],
+            [
+              91.7222594,
+              22.4967404
+            ],
+            [
+              91.7223808,
+              22.496145
+            ],
+            [
+              91.7220072,
+              22.4957566
+            ],
+            [
+              91.7215402,
+              22.4957653
+            ],
+            [
+              91.720737,
+              22.4954719
+            ],
+            [
+              91.7205315,
+              22.4954115
+            ],
+            [
+              91.7182711,
+              22.4999369
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "node",
+        "osmId": 6766456298,
+        "name": "Hotashar Chottor",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap node/6766456298",
+        "description": "Natural: tree"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7214144,
+          22.4937938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "node",
+        "osmId": 11095395856,
+        "name": "IIUC Volleyball ground",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap node/11095395856",
+        "description": "Leisure: pitch; Sport: volleyball"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7210832,
+          22.4953857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "node",
+        "osmId": 11095397695,
+        "name": "Allahr Dan Hotel",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap node/11095397695",
+        "description": "Amenity: restaurant"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7217034,
+          22.4956667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "node",
+        "osmId": 11095431219,
+        "name": "IIUC Flower Nursery, Central Mosque Rd, Kumira, Chittagong",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap node/11095431219",
+        "description": "Shop: garden_centre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7205866,
+          22.4962394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "node",
+        "osmId": 11095598316,
+        "name": "DBA Seminar Library, Sonaichhari, Chittagong",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap node/11095598316",
+        "description": "Amenity: library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7213258,
+          22.4980523
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "node",
+        "osmId": 11365664946,
+        "name": "IIUC VIP Car Parking",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap node/11365664946",
+        "description": "Amenity: parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7206821,
+          22.4968764
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmType": "node",
+        "osmId": 11365783965,
+        "name": "IIUC Departmental Store",
+        "kind": "poi",
+        "category": "Campus Facilities",
+        "source": "OpenStreetMap node/11365783965",
+        "description": "Shop: department_store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7213425,
+          22.4965999
+        ]
+      }
+    }
+  ]
+}
